@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.0
+Version: 1.1
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 KNOWN ISSUES:
@@ -8,7 +8,14 @@ KNOWN ISSUES:
 - Dark mode - Text color "Start typing to search..." in the Flight Map filtering, when the filter is highlighted, doesn't change to the primary or secondary color. I unfortunately had no luck finding out why.
 
 CHANGELOG:
-1.0 - Initial Release
+1.0
+ - Initial Release
+1.1
+- Tweaked button colors on the Dispatch page. 
+- Tweaked border color of the buttons on the booking page.
+- Added custom colors to the Cancel booking buttons. 
+- Tweaked Success badge border color.
+- Tweaked Primary button hover color
 */
 
 :root{ /* Variable section of the CSS, edit your colors only here: */
@@ -26,8 +33,11 @@ CHANGELOG:
 	--primary: var(--primary-rgb) !important;
 	--primary-600: var(--secondary-rgb) !important;
 	--success: var(--primary-rgb) !important;
-	--success-600: var(--secondary-rgb) !important;
+	--success-500: var(--secondary-rgb) !important;
+	--success-600: var(--primary-rgb) !important;
 	--info: var(--primary-rgb) !important;
+	--info-500: var(--primary-rgb) !important;
+	--info-600: var(--primary-rgb) !important;
 	--warning: var(--primary-rgb) !important;
 	--gray-400: var(--primary-rgb) !important;
 	--gray-950: var(--primary-rgb) !important;
@@ -160,8 +170,9 @@ CHANGELOG:
 
 .hover\:bg-custom-400\/10:hover {
 	background: rgb(var(--secondary-rgb)) !important;
+	color: rgb(255,255,255) !important;
 	border-color: rgba(var(--secondary-rgb)) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb)) !important;
+	--tw-ring-color: rgb(var(--secondary-rgb)) !important;
 }
 
 .text-gray-600 {
@@ -190,6 +201,18 @@ CHANGELOG:
 	font-weight: 650 !important;
 }
 
+.hover\:bg-custom-500:hover {
+	background: rgb(var(--secondary-rgb)) !important;
+	border-color: rgba(var(--secondary-rgb)) !important;
+	--tw-ring-color: rgba(var(--secondary-rgb)) !important;
+}
+
+.btn-info-outline:hover {
+	background: rgb(var(--secondary-rgb)) !important;
+	border-color: rgba(var(--secondary-rgb)) !important;
+	--tw-ring-color: rgba(var(--secondary-rgb)) !important;
+}
+
 /* Dark Mode section */
 :root:is(.dark) {
 	--primary: var(--primary-darkmode-color) !important;
@@ -207,6 +230,7 @@ CHANGELOG:
 	--tw-topbar-item-color: rgb(131, 145, 162) !important;
 	--tw-topbar-item-active-color: rgb(var(--secondary-rgb)) !important;
 	--tw-topbar-item-hover-color: rgb(var(--secondary-rgb)) !important;
+	--info-500: var(--secondary-rgb) !important;
 	--info-600: var(--secondary-rgb) !important;
 	--info-700: var(--primary-rgb) !important;
 	--dark: 33, 37, 41 !important;
@@ -326,10 +350,6 @@ CHANGELOG:
 	color: rgb(var(--primary),0.8) !important;
 }
 
-.dark\:bg-custom-500:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.7) !important;
-}
-
 .dark\:ring-custom-500:is(.dark *) {
 	background: rgba(var(--secondary-rgb), 0.8) !important;
 	color: rgba(var(--primary),0.8) !important;
@@ -338,7 +358,8 @@ CHANGELOG:
 
 .btn.btn-sm:is(.dark *) {
 	color: rgba(var(--primary)) !important;
-	background: rgb(var(--secondary-rgb),0.7) !important;
+	background: rgb(var(--secondary-rgb),0.8) !important;
+	border-color: rgba(var(--secondary-rgb), 0.8) !important;
 }
 
 .border-primary:is(.dark *) {
@@ -397,6 +418,7 @@ CHANGELOG:
 	background: rgba(var(--secondary-rgb), 0.8) !important;
 	color: rgba(var(--primary),0.8) !important;
 	--tw-ring-color: rgba(var(--secondary-rgb), 0.8) !important;
+	border-color: rgba(var(--secondary-rgb), 0.8) !important;
 }
 
 .badge:is(.dark *) {
@@ -411,4 +433,48 @@ CHANGELOG:
 
 .focus\:ring-0:focus:is(.dark *) {
 	--tw-ring-color: rgba(var(--secondary-rgb)) !important;
+}
+
+.hover\:bg-custom-500:hover:is(.dark *) {
+	background: rgb(var(--secondary-rgb), 0.7) !important;
+	border-color: rgba(var(--secondary-rgb), 0.7) !important;
+	--tw-ring-color: rgba(var(--secondary-rgb), 0.7) !important;
+	color: rgba(var(--primary),0.9) !important;
+}
+
+.btn-info-outline:is(.dark *):hover {
+	background: rgb(var(--secondary-rgb), 0.7) !important;
+	color: rgba(var(--primary),0.7) !important;
+	border-color: rgba(var(--secondary-rgb), 0.7) !important;
+}
+
+.btn-danger-outline:is(.dark *):hover {
+	background: rgb(var(--danger-500), 0.8) !important;
+	color: rgba(var(--primary),0.7) !important;
+	border-color: rgba(var(--danger-500), 0.8) !important;
+}
+
+.dark\:bg-custom-500:is(.dark *) {
+	background: rgb(var(--secondary-rgb), 0.8) !important;
+	border-color: rgba(var(--secondary-rgb), 0.8) !important;
+	--tw-ring-color: rgba(var(--secondary-rgb), 0.8) !important;
+	color: rgba(var(--primary),0.9) !important;
+}
+
+.dark\:hover\:bg-custom-400:hover:is(.dark *) {
+	background: rgb(var(--secondary-rgb), 0.7) !important;
+	color: rgba(var(--primary),0.7) !important;
+	border-color: rgba(var(--secondary-rgb), 0.7) !important;
+}
+
+.dark\:hover\:bg-white\/10:hover:is(.dark *) {
+	background: rgb(var(--secondary-rgb), 0.7) !important;
+	color: rgba(var(--primary),0.7) !important;
+	border-color: rgba(var(--secondary-rgb), 0.7) !important;
+}
+
+.btn-primary:hover:is(.dark *) {
+	background: rgb(var(--secondary-rgb), 0.7) !important;
+	color: rgba(var(--primary),0.7) !important;
+	border-color: rgba(var(--secondary-rgb), 0.7) !important;
 }
