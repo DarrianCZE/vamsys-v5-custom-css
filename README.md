@@ -1,6 +1,9 @@
 # Custom Stylesheet for the vAMSYS v5
 This stylesheet contains an end to end solution made for the SW Virtual virtual airline, however based on the popular reception of previous version, was made available to the public, where the only thing you need to do, is to change your primary and secondary colors.
 
+# Download link
+Download here: https://github.com/DarrianCZE/vamsys-v5-custom-css/releases
+
 # How to use
 - Change your VA colors in the first section of the CSS:
 
