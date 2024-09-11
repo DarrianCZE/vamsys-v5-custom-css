@@ -30,3 +30,4 @@ Download here: https://github.com/DarrianCZE/vamsys-v5-custom-css/releases
 	- Added custom colors to the Cancel booking buttons. 
 	- Tweaked Success badge border color.
 	- Tweaked Primary button hover color
+ 	- Better color brightness for primary and sucess buttons in Dark mode
