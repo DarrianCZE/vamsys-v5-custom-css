@@ -488,9 +488,9 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 .fi-input-wrp:focus-within {
   --tw-ring-opacity: 1 !important;
-  --tw-ring-color: rgb(var(--secondary-rgb) / var(--tw-ring-opacity)) !important
+  --tw-ring-color: rgb(var(--secondary-rgb)) / var(--tw-ring-opacity)) !important
 }
 .fi-input-wrp:focus-within:is(.dark *) {
   --tw-ring-opacity: 1 !important;
-  --tw-ring-color: rgb(var(--secondary-rgb) / var(--tw-ring-opacity)) !important
+  --tw-ring-color: rgb(var(--secondary-rgb)) / var(--tw-ring-opacity)) !important
 }
