@@ -16,11 +16,6 @@ Download here: https://github.com/DarrianCZE/vamsys-v5-custom-css/releases
 ```
 - Import the stylesheet into the vAMSYS v5 Orwell Design section!
 
-# Known Issues
-- Dark mode
-	- Border color in the Flight Map filtering, when the filter is highlighted, doesn't change to the primary or secondary color. I unfortunately had no luck finding out why.
-	- Text color "Start typing to search..." in the Flight Map filtering, when the filter is highlighted, doesn't change to the primary or secondary color. I unfortunately had no luck finding out why.
-
 # Changelog:
 - 1.0
 	- Initial Release
@@ -31,3 +26,6 @@ Download here: https://github.com/DarrianCZE/vamsys-v5-custom-css/releases
 	- Tweaked Success badge border color.
 	- Tweaked Primary button hover color
  	- Better color brightness for primary and sucess buttons in Dark mode
+- 1.2
+	- Fixed Border color in the Flight Map filtering section in the Dark Mode - credits to Lukas for helping!
+	- Fixed Text color "Start typing to search..." in the Flight Map filtering - credits to Lukas for helping!
