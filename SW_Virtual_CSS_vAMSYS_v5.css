@@ -199,6 +199,11 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	--tw-ring-color: rgba(var(--secondary-rgb)) !important;
 }
 
+.fi-input-wrp:focus-within {
+	--tw-ring-opacity: 1 !important;
+	--tw-ring-color: rgb(var(--secondary-rgb)) !important
+}
+
 /* Dark Mode section */
 :root:is(.dark) {
 	--primary: var(--primary-darkmode-color) !important;
@@ -486,11 +491,13 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	border-color: rgba(var(--secondary-rgb), 0.8) !important;
 }
 
-.fi-input-wrp:focus-within {
-  --tw-ring-opacity: 1 !important;
-  --tw-ring-color: rgb(var(--secondary-rgb) / var(--tw-ring-opacity)) !important
-}
 .fi-input-wrp:focus-within:is(.dark *) {
   --tw-ring-opacity: 1 !important;
-  --tw-ring-color: rgb(var(--secondary-rgb) / var(--tw-ring-opacity)) !important
+  --tw-ring-color: rgb(var(--secondary-rgb),0.8) !important
+}
+.choices__input:is(.dark *)::-moz-placeholder {
+    color: var(--tw-body-color);
+}
+.choices__input:is(.dark *)::placeholder {
+    color: var(--tw-body-color);
 }
