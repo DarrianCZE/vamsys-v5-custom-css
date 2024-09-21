@@ -31,3 +31,4 @@ Download here: https://github.com/DarrianCZE/vamsys-v5-custom-css/releases
 	- Fixed Text color "Start typing to search..." in the Flight Map filtering - credits to Lukas for helping!
 - 1.3
 	- Early implementation of the PIREP cards styling
+	- Alert - Danger styling
