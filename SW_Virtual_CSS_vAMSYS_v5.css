@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.2
+Version: 1.3
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -8,6 +8,7 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	--primary-rgb: 0,69,138; /* Primary VA Color in RGB format. Should be darker. */
 	--secondary-rgb: 241,144,1; /* Secondary VA Color in RGB format. Should be brighter. */
 	--primary-darkmode-color: 255,255,255; /* Primary Dark mode color. In this case, it's white, but theoretically it can be any very bright color. */
+	--danger-rgb: 241, 87, 118; /* Warning color, I recommend some shade of red. */
 }
 
 /* Light mode section */
@@ -42,6 +43,11 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 .alert.alert-success {
     color: rgb(255,255,255,0.9) !important;
 	background-color: rgba(var(--success)) !important;
+}
+
+.alert.alert-danger {
+    color: rgb(255,255,255,0.9) !important;
+	background-color: rgba(var(--secondary-rgb)) !important;
 }
 
 .alert.alert-warning {
@@ -202,6 +208,24 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 .fi-input-wrp:focus-within {
 	--tw-ring-opacity: 1 !important;
 	--tw-ring-color: rgb(var(--secondary-rgb)) !important
+}
+
+.card.card-primary {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+	--tw-ring-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.card.card-warning {
+	background-color: rgb(var(--danger-rgb))!important;
+	border-color: rgb(var(--danger-rgb)) !important;
+	--tw-ring-color: rgb(var(--danger-rgb)) !important;
+}
+
+.card.card-danger {
+	background-color: rgb(var(--danger-rgb))!important;
+	border-color: rgb(var(--danger-rgb)) !important;
+	--tw-ring-color: rgb(var(--danger-rgb)) !important;
 }
 
 /* Dark Mode section */
@@ -500,4 +524,22 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 .choices__input:is(.dark *)::placeholder {
     color: var(--tw-body-color);
+}
+
+.card.card-primary:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb), 0.8) !important;
+	border-color: rgb(var(--secondary-rgb), 0.8) !important;
+	--tw-ring-color: rgb(var(--secondary-rgb), 0.8) !important;
+}
+
+.card.card-warning:is(.dark *) {
+	background-color: rgb(var(--danger-rgb), 0.8)!important;
+	border-color: rgb(var(--danger-rgb), 0.8) !important;
+	--tw-ring-color: rgb(var(--danger-rgb), 0.8) !important;
+}
+
+.card.card-danger:is(.dark *) {
+	background-color: rgb(var(--danger-rgb), 0.8)!important;
+	border-color: rgb(var(--danger-rgb), 0.8) !important;
+	--tw-ring-color: rgb(var(--danger-rgb)), 0.8 !important;
 }
