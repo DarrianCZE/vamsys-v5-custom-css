@@ -45,6 +45,11 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	background-color: rgba(var(--success)) !important;
 }
 
+.alert.alert-danger {
+    color: rgb(255,255,255,0.9) !important;
+	background-color: rgba(var(--secondary-rgb)) !important;
+}
+
 .alert.alert-warning {
 	color: rgb(255,255,255,0.9) !important;
 }
