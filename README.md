@@ -32,3 +32,5 @@ Download here: https://github.com/DarrianCZE/vamsys-v5-custom-css/releases
 - 1.3
 	- Early implementation of the PIREP cards styling
 	- Alert - Danger styling
+- 1.4
+	- Add flight progress bar styling in dark mode
