@@ -545,5 +545,5 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .dark\:bg-dark\/40:is(.dark *) {
-	background-color: rgb(var(--primary-rgb)) !important;
+	background-color: rgb(var(--primary-darkmode-color),0.8) !important
 }
