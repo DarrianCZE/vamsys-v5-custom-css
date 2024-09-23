@@ -543,3 +543,7 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	border-color: rgb(var(--danger-rgb), 0.8) !important;
 	--tw-ring-color: rgb(var(--danger-rgb)), 0.8 !important;
 }
+
+.dark\:bg-dark\/40:is(.dark *) {
+	background-color: rgb(var(--primary-rgb)) !important;
+}
