@@ -299,8 +299,8 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .alert.alert-success:is(.dark *) {
-    color: rgba(var(--primary),0.8) !important;
-	background-color: rgba(var(--success),0.7) !important;
+    color: rgba(var(--primary)) !important;
+	background-color: rgba(var(--success),0.9) !important;
 }
 
 .alert.alert-warning:is(.dark *) {
