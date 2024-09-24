@@ -34,3 +34,5 @@ Download here: https://github.com/DarrianCZE/vamsys-v5-custom-css/releases
 	- Alert - Danger styling
 - 1.4
 	- Add flight progress bar styling in dark mode
+- 1.4.1
+	- Tweaked the Alert Danger brightness in the Light mode
