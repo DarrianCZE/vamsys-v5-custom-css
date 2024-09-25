@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.4.2
+Version: 1.5
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -103,7 +103,7 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .text-custom-600 {
-	color: rgb(255,255,255) !important;
+	color: rgb(var(--primary-rgb)) !important;
 }
 
 .text-gray-700 {
@@ -173,6 +173,7 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 .ring-custom-600\/10 {
 	background-color: rgba(var(--secondary-rgb),0.9) !important;
+	color: rgb(255,255,255) !important;
 }
 
 .badge.badge-success {
@@ -226,6 +227,11 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	background-color: rgb(var(--danger-rgb))!important;
 	border-color: rgb(var(--danger-rgb)) !important;
 	--tw-ring-color: rgb(var(--danger-rgb)) !important;
+}
+
+.fi-pagination-item-label, .fi-select-input, .fi-pagination-overview, .fi-input, .fi-ta-filter-indicators 
+span {
+	color: rgb(var(--primary),0.9) !important;
 }
 
 /* Dark Mode section */
@@ -284,9 +290,9 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .dark\:hover\:text-gray-400:hover:is(.dark *) {
-	color: rgb(var(--primary),0.8) !important;
+	color: rgb(var(--primary),0.7) !important;
 	font-weight: 600 !important;
-	background: rgb(var(--secondary-rgb),.4) !important;
+	background: rgb(var(--secondary-rgb),.7) !important;
 	border-bottom-color: white !important;
 }
 
@@ -357,8 +363,8 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .active.dark\:fc-tab-active\:text-white:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),.8) !important;
-	color: rgb(var(--primary),0.8) !important;
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	color: rgb(var(--primary),0.9) !important;
 }
 
 .dark\:text-gray-400:is(.dark *) {
@@ -366,15 +372,15 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .dark\:ring-custom-500:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.8) !important;
-	color: rgba(var(--primary),0.8) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.8) !important;
+	background: rgba(var(--secondary-rgb), 0.9) !important;
+	color: rgba(var(--primary),0.9) !important;
+	--tw-ring-color: rgba(var(--secondary-rgb), 0.9) !important;
 }
 
 .btn.btn-sm:is(.dark *) {
 	color: rgba(var(--primary)) !important;
-	background: rgb(var(--secondary-rgb),0.8) !important;
-	border-color: rgba(var(--secondary-rgb), 0.8) !important;
+	background: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgba(var(--secondary-rgb), 0.9) !important;
 }
 
 .border-primary:is(.dark *) {
@@ -416,13 +422,13 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .dark\:text-custom-400:is(.dark *) {
-	color: rgb(var(--primary),0.7) !important;
+	color: rgb(var(--primary),0.9) !important;
 }
 
 .dark\:ring-custom-400\/30:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.8) !important;
-	color: rgba(var(--primary),0.8) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.8) !important;
+	background: rgba(var(--secondary-rgb), 0.9) !important;
+	color: rgba(var(--primary),0.9) !important;
+	--tw-ring-color: rgba(var(--secondary-rgb), 0.9) !important;
 }
 
 .choices__placeholder.choices__item:is(.dark *) {
@@ -459,9 +465,9 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .btn-info-outline:is(.dark *):hover {
-	background: rgb(var(--secondary-rgb), 0.7) !important;
-	color: rgba(var(--primary),0.7) !important;
-	border-color: rgba(var(--secondary-rgb), 0.7) !important;
+	background: rgb(var(--secondary-rgb), 0.8) !important;
+	color: rgba(var(--primary),0.8) !important;
+	border-color: rgba(var(--secondary-rgb), 0.8) !important;
 }
 
 .btn-danger-outline:is(.dark *):hover {
@@ -496,10 +502,10 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .btn-success:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.8) !important;
-	color: rgba(var(--primary),0.8) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.8) !important;
-	border-color: rgba(var(--secondary-rgb), 0.8) !important;
+	background: rgba(var(--secondary-rgb), 0.9) !important;
+	color: rgba(var(--primary),0.9) !important;
+	--tw-ring-color: rgba(var(--secondary-rgb), 0.9) !important;
+	border-color: rgba(var(--secondary-rgb), 0.9) !important;
 }
 
 .btn-success:hover:is(.dark *) {
@@ -546,4 +552,8 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 .dark\:bg-dark\/40:is(.dark *) {
 	background-color: rgb(var(--primary-darkmode-color),0.8) !important
+}
+
+.dark\:text-custom-300\/50:is(.dark *) {
+	color: rgba(var(--primary),0.9) !important;
 }
