@@ -38,3 +38,5 @@ Download here: https://github.com/DarrianCZE/vamsys-v5-custom-css/releases
 	- Tweaked the Alert Danger brightness in the Light mode
 - 1.4.2
 	- Tweaked the brightness of the Alert Success
+- 1.5
+	- Various tweaks in the Dark mode and Light mode, especially regarding the color brightness in the Dark mode.
