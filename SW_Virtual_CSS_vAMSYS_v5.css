@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.5.1
+Version: 1.6
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -41,13 +41,13 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .alert.alert-success {
-    color: rgb(255,255,255,0.9) !important;
+    color: rgb(255,255,255) !important;
 	background-color: rgba(var(--success)) !important;
 }
 
 .alert.alert-danger {
     color: rgb(255,255,255) !important;
-	background-color: rgba(var(--secondary-rgb),0.9) !important;
+	background-color: rgba(var(--secondary-rgb)) !important;
 }
 
 .alert.alert-warning {
@@ -119,11 +119,11 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .btn-success:hover {
-	background-color: rgba(var(--secondary-rgb), 0.9) !important;
+	background-color: rgba(var(--secondary-rgb)) !important;
 }
 
 .btn-info:hover {
-	background-color: rgba(var(--secondary-rgb), 0.9) !important;
+	background-color: rgba(var(--secondary-rgb)) !important;
 }
 
 .fi-section-header-heading {
@@ -172,7 +172,7 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .ring-custom-600\/10 {
-	background-color: rgba(var(--secondary-rgb),0.9) !important;
+	background-color: rgba(var(--secondary-rgb)) !important;
 	color: rgb(255,255,255) !important;
 }
 
@@ -232,6 +232,13 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 .fi-pagination-item-label, .fi-select-input, .fi-pagination-overview, .fi-input, .fi-ta-filter-indicators 
 span {
 	color: rgb(var(--primary),0.9) !important;
+}
+
+.card.card-info {
+	color: rgb(255,255,255) !important;
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+	--tw-ring-color: rgb(var(--secondary-rgb)) !important;
 }
 
 /* Dark Mode section */
@@ -556,4 +563,11 @@ span {
 
 .dark\:text-custom-300\/50:is(.dark *) {
 	color: rgba(var(--primary),0.9) !important;
+}
+
+.card.card-info:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color)) !important;
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+	--tw-ring-color: rgb(var(--secondary-rgb),0.9) !important;
 }
