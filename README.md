@@ -43,3 +43,5 @@ Download here: https://github.com/DarrianCZE/vamsys-v5-custom-css/releases
 - 1.6
 	- Various color fixes and tweaks
 	- Added Card - Info styling
+- 1.7
+	- Changed airport code badge on the Flight Map

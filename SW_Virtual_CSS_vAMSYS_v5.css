@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.6
+Version: 1.7
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -229,8 +229,7 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	--tw-ring-color: rgb(var(--danger-rgb)) !important;
 }
 
-.fi-pagination-item-label, .fi-select-input, .fi-pagination-overview, .fi-input, .fi-ta-filter-indicators 
-span {
+.fi-pagination-item-label, .fi-select-input, .fi-pagination-overview, .fi-input, .fi-ta-filter-indicators span {
 	color: rgb(var(--primary),0.9) !important;
 }
 
@@ -239,6 +238,17 @@ span {
 	background-color: rgb(var(--secondary-rgb)) !important;
 	border-color: rgb(var(--secondary-rgb)) !important;
 	--tw-ring-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.btn.w-full {
+	color: rgb(255,255,255) !important;
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+	--tw-ring-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.fi-badge {
+	color: rgb(255,255,255) !important;
 }
 
 /* Dark Mode section */
