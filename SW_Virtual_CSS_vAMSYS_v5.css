@@ -1,6 +1,10 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
+<<<<<<< HEAD
 Version: 1.7
+=======
+Version: 1.5.1
+>>>>>>> parent of f1cb7b9 (1.6)
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -41,13 +45,13 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .alert.alert-success {
-    color: rgb(255,255,255) !important;
+    color: rgb(255,255,255,0.9) !important;
 	background-color: rgba(var(--success)) !important;
 }
 
 .alert.alert-danger {
     color: rgb(255,255,255) !important;
-	background-color: rgba(var(--secondary-rgb)) !important;
+	background-color: rgba(var(--secondary-rgb),0.9) !important;
 }
 
 .alert.alert-warning {
@@ -118,6 +122,17 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	color: rgb(var(--primary-rgb),0.8) !important;
 }
 
+<<<<<<< HEAD
+=======
+.btn-success:hover {
+	background-color: rgba(var(--secondary-rgb), 0.9) !important;
+}
+
+.btn-info:hover {
+	background-color: rgba(var(--secondary-rgb), 0.9) !important;
+}
+
+>>>>>>> parent of f1cb7b9 (1.6)
 .fi-section-header-heading {
 	color: rgb(var(--primary-rgb)) !important;
 }
@@ -152,7 +167,7 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 }
 
 .ring-custom-600\/10 {
-	background-color: rgba(var(--secondary-rgb)) !important;
+	background-color: rgba(var(--secondary-rgb),0.9) !important;
 	color: rgb(255,255,255) !important;
 }
 
@@ -207,6 +222,7 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	color: rgb(var(--primary),0.9) !important;
 }
 
+<<<<<<< HEAD
 .card.card-info {
 	color: rgb(255,255,255) !important;
 	background-color: rgb(var(--secondary-rgb)) !important;
@@ -253,6 +269,8 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	--tw-ring-color: rgb(var(--secondary-rgb)) !important;
 }
 
+=======
+>>>>>>> parent of f1cb7b9 (1.6)
 /* Dark Mode section */
 :root:is(.dark) {
 	--primary: var(--primary-darkmode-color) !important;
@@ -575,11 +593,4 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 .dark\:text-custom-300\/50:is(.dark *) {
 	color: rgba(var(--primary),0.9) !important;
-}
-
-.card.card-info:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-	--tw-ring-color: rgb(var(--secondary-rgb),0.9) !important;
 }
