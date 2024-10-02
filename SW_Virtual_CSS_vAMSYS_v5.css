@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.6
+Version: 1.7
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -145,9 +145,9 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	border-color: rgba(var(--secondary-rgb)) !important;
 }
 
-.bg-\[\#ebedf2\] {
+/*.bg-\[\#ebedf2\] {
 	background: rgb(var(--secondary-rgb),0.9) !important;
-}
+}*/
 
 .text-\[\#515365\] {
 	color: rgbaa(var(--primary-rgb)) !important;
