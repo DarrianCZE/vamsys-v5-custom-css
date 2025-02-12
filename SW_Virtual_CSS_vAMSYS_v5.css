@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.7
+Version: 1.8
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -14,6 +14,10 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 /* Light mode section */
 .menu .menu-item .menu-link>.menu-text {
 	font-weight: 450;
+}
+
+.striped-padded-table table tbody tr td {
+	color: rgb(var(--primary-rgb)) !important;
 }
 
 :root{
@@ -285,6 +289,10 @@ span {
     --gray-900: 29, 31, 45 !important;
     --gray-950: 18, 19, 28 !important;
 	--tw-gradient-from: rgb(var(--primary-rgb)) var(--tw-gradient-from-position) !important;
+}
+
+.striped-padded-table table tbody tr td:is(.dark *) {
+	color: rgb(156 163 175 / var(--tw-text-opacity)) !important;
 }
 
 .card:is(.dark *) {
