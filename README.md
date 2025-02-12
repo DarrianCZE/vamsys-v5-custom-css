@@ -45,3 +45,5 @@ Download here: https://github.com/DarrianCZE/vamsys-v5-custom-css/releases
 	- Added Card - Info styling
 - 1.7
 	- Remove Badges styling on Flight Map and Booking map, looks better this way
+- 1.8
+	- Fixed table font color
