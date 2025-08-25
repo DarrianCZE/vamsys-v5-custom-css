@@ -674,6 +674,10 @@ span {
 	color: rgba(var(--primary),0.9) !important;
 }
 
+.dark\:text-emerald-400:is(.dark *) {
+	color: rgba(var(--primary),0.9) !important;
+}
+
 .dark\:checked\:bg-primary-500:checked:is(.dark *) {
 	background-color: rgb(var(--secondary-rgb),0.9) !important;
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
