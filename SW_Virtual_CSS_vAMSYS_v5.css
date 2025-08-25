@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.9
+Version: 1.9.2
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -313,8 +313,8 @@ span {
 }
 
 .booking-map-dispatch-btn:hover {
-	background-color: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
+	background-color: rgb(var(--secondary-rgb), 0.8) !important;
+	border-color: rgb(var(--secondary-rgb), 0.8) !important;
 }
 
 .destination-map-reset-btn {
@@ -325,6 +325,40 @@ span {
 .destination-map-reset-btn:hover {
 	background-color: rgb(var(--danger-rgb)) !important;
 	border-color: rgb(var(--danger-rgb)) !important;
+}
+
+.text-emerald-600 {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.destination-map-jumpseat-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.destination-map-jumpseat-btn:hover {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.destination-map-info-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.destination-map-info-btn:hover {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.destination-map-swap-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.destination-map-swap-btn:hover {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
 }
 
 /* Dark Mode section */
@@ -743,12 +777,42 @@ span {
 	border-color: rgb(var(--secondary-rgb),0.7) !important;
 }
 
-.destination-map-reset-btn {
+.destination-map-reset-btn:is(.dark *) {
 	background-color: rgb(var(--secondary-rgb),0.9) !important;
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
 }
 
-.destination-map-reset-btn:hover {
+.destination-map-reset-btn:hover:is(.dark *) {
 	background-color: rgb(var(--danger-rgb),0.7) !important;
 	border-color: rgb(var(--danger-rgb),0.7) !important;
+}
+
+.destination-map-jumpseat-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.destination-map-jumpseat-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+}
+
+.destination-map-info-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.destination-map-info-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+}
+
+.destination-map-swap-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.destination-map-swap-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
 }
