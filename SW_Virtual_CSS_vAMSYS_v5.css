@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.8
+Version: 1.9
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -149,10 +149,6 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	border-color: rgba(var(--secondary-rgb)) !important;
 }
 
-/*.bg-\[\#ebedf2\] {
-	background: rgb(var(--secondary-rgb),0.9) !important;
-}*/
-
 .text-\[\#515365\] {
 	color: rgbaa(var(--primary-rgb)) !important;
 }
@@ -243,6 +239,92 @@ span {
 	background-color: rgb(var(--secondary-rgb)) !important;
 	border-color: rgb(var(--secondary-rgb)) !important;
 	--tw-ring-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.text-green-600 {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.text-primary-600 {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.text-gray-900 {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.text-gray-950 {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.booking-map-random-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.booking-map-random-btn:hover {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.booking-map-jumpseat-dest-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.booking-map-jumpseat-dest-btn:hover {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.booking-map-departure-info-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.booking-map-departure-info-btn:hover {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.booking-map-arrival-info-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.booking-map-arrival-info-btn:hover {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.booking-map-reset-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.booking-map-reset-btn:hover {
+	background-color: rgb(var(--danger-rgb)) !important;
+	border-color: rgb(var(--danger-rgb)) !important;
+}
+
+.booking-map-dispatch-btn {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.booking-map-dispatch-btn:hover {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.destination-map-reset-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.destination-map-reset-btn:hover {
+	background-color: rgb(var(--danger-rgb)) !important;
+	border-color: rgb(var(--danger-rgb)) !important;
 }
 
 /* Dark Mode section */
@@ -578,4 +660,91 @@ span {
 	background-color: rgb(var(--secondary-rgb),0.9) !important;
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
 	--tw-ring-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.dark\:text-primary-400:is(.dark *) {
+	color: rgba(var(--primary),0.9) !important;
+}
+
+.dark\:text-green-400:is(.dark *) {
+	color: rgba(var(--primary),0.9) !important;
+}
+
+.dark\:text-gray-300:is(.dark *) {
+	color: rgba(var(--primary),0.9) !important;
+}
+
+.dark\:checked\:bg-primary-500:checked:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.booking-map-random-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.booking-map-random-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+}
+
+.booking-map-jumpseat-dest-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.booking-map-jumpseat-dest-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+}
+
+.booking-map-departure-info-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.booking-map-departure-info-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+}
+
+.booking-map-arrival-info-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.booking-map-arrival-info-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+}
+
+.booking-map-reset-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.booking-map-reset-btn:hover:is(.dark *) {
+	background-color: rgb(var(--danger-rgb),0.7) !important;
+	border-color: rgb(var(--danger-rgb),0.7) !important;
+}
+
+.booking-map-dispatch-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.booking-map-dispatch-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+}
+
+.destination-map-reset-btn {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.destination-map-reset-btn:hover {
+	background-color: rgb(var(--danger-rgb),0.7) !important;
+	border-color: rgb(var(--danger-rgb),0.7) !important;
 }
