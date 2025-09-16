@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.9.2
+Version: 1.10
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -257,66 +257,6 @@ span {
 	color: rgb(var(--primary-rgb)) !important;
 }
 
-.booking-map-random-btn {
-	background-color: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.booking-map-random-btn:hover {
-	background-color: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.booking-map-jumpseat-dest-btn {
-	background-color: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.booking-map-jumpseat-dest-btn:hover {
-	background-color: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.booking-map-departure-info-btn {
-	background-color: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.booking-map-departure-info-btn:hover {
-	background-color: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.booking-map-arrival-info-btn {
-	background-color: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.booking-map-arrival-info-btn:hover {
-	background-color: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.booking-map-reset-btn {
-	background-color: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.booking-map-reset-btn:hover {
-	background-color: rgb(var(--danger-rgb)) !important;
-	border-color: rgb(var(--danger-rgb)) !important;
-}
-
-.booking-map-dispatch-btn {
-	background-color: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.booking-map-dispatch-btn:hover {
-	background-color: rgb(var(--secondary-rgb), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb), 0.8) !important;
-}
-
 .destination-map-reset-btn {
 	background-color: rgb(var(--primary-rgb)) !important;
 	border-color: rgb(var(--primary-rgb)) !important;
@@ -357,6 +297,48 @@ span {
 }
 
 .destination-map-swap-btn:hover {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.book-flight-dispatch-btn {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+	--tw-gradient-to: none !important;
+}
+
+.book-flight-dispatch-btn:hover {
+	background-color: rgb(var(--secondary-rgb), 0.8) !important;
+	border-color: rgb(var(--secondary-rgb), 0.8) !important;
+	--tw-gradient-to: none !important;
+}
+
+.book-flight-random-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.book-flight-random-btn:hover {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.book-flight-reset-btn {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.book-flight-reset-btn:hover {
+	background-color: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.airport-info-button {
+	background-color: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+}
+
+.airport-info-button:hover {
 	background-color: rgb(var(--secondary-rgb)) !important;
 	border-color: rgb(var(--secondary-rgb)) !important;
 }
@@ -722,61 +704,6 @@ span {
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
 }
 
-.booking-map-random-btn:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.7) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.booking-map-jumpseat-dest-btn:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.booking-map-jumpseat-dest-btn:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.7) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.booking-map-departure-info-btn:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.booking-map-departure-info-btn:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.7) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.booking-map-arrival-info-btn:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.booking-map-arrival-info-btn:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.7) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.booking-map-reset-btn:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.booking-map-reset-btn:hover:is(.dark *) {
-	background-color: rgb(var(--danger-rgb),0.7) !important;
-	border-color: rgb(var(--danger-rgb),0.7) !important;
-}
-
-.booking-map-dispatch-btn:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.booking-map-dispatch-btn:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.7) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
 .destination-map-reset-btn:is(.dark *) {
 	background-color: rgb(var(--secondary-rgb),0.9) !important;
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
@@ -813,6 +740,48 @@ span {
 }
 
 .destination-map-swap-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+}
+
+.book-flight-dispatch-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+	--tw-gradient-to: none !important;
+}
+
+.book-flight-dispatch-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+	--tw-gradient-to: none !important;
+}
+
+.book-flight-random-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.book-flight-random-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+}
+
+.book-flight-reset-btn:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.book-flight-reset-btn:hover:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
+}
+
+.airport-info-button:is(.dark *) {
+	background-color: rgb(var(--secondary-rgb),0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+}
+
+.airport-info-button:hover:is(.dark *) {
 	background-color: rgb(var(--secondary-rgb),0.7) !important;
 	border-color: rgb(var(--secondary-rgb),0.7) !important;
 }
