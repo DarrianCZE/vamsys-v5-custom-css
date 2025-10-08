@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.10
+Version: 1.11
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -271,14 +271,20 @@ span {
 	color: rgb(var(--primary-rgb)) !important;
 }
 
-.destination-map-jumpseat-btn {
+.jumpseat-button {
 	background-color: rgb(var(--primary-rgb)) !important;
 	border-color: rgb(var(--primary-rgb)) !important;
+	--tw-gradient-from: null;
+	--tw-gradient-to: null;
+	--tw-gradient-stops: null;
 }
 
-.destination-map-jumpseat-btn:hover {
+.jumpseat-button:hover {
 	background-color: rgb(var(--secondary-rgb)) !important;
 	border-color: rgb(var(--secondary-rgb)) !important;
+	--tw-gradient-from: null;
+	--tw-gradient-to: null;
+	--tw-gradient-stops: null;
 }
 
 .destination-map-info-btn {
@@ -714,14 +720,20 @@ span {
 	border-color: rgb(var(--danger-rgb),0.7) !important;
 }
 
-.destination-map-jumpseat-btn:is(.dark *) {
+.jumpseat-button:is(.dark *) {
 	background-color: rgb(var(--secondary-rgb),0.9) !important;
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
+	--tw-gradient-from: null;
+	--tw-gradient-to: null;
+	--tw-gradient-stops: null;
 }
 
-.destination-map-jumpseat-btn:hover:is(.dark *) {
+.jumpseat-button:hover:is(.dark *) {
 	background-color: rgb(var(--secondary-rgb),0.7) !important;
 	border-color: rgb(var(--secondary-rgb),0.7) !important;
+	--tw-gradient-from: null;
+	--tw-gradient-to: null;
+	--tw-gradient-stops: null;
 }
 
 .destination-map-info-btn:is(.dark *) {
