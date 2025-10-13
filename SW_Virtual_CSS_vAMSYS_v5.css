@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.11
+Version: 1.12
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -96,10 +96,6 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 .striped-table table tbody tr td {
 	color: rgb(var(--primary-rgb) / var(--tw-text-opacity)) !important;
-}
-
-.tiptap-editor .ProseMirror {
-	color: rgb(var(--primary-rgb)) !important;
 }
 
 .fi-ta-header-heading {
@@ -449,10 +445,6 @@ span {
 	color: rgb(var(--primary) / var(--tw-text-opacity))!important;
 }
 
-.tiptap-editor .ProseMirror:is(.dark *) {
-	color: rgb(var(--primary)) !important;
-}
-
 .fi-ta-header-heading:is(.dark *) {
 	color: rgb(var(--primary)) !important;
 }
@@ -470,10 +462,6 @@ span {
 }
 
 .text-gray-700:is(.dark *) {
-	color: rgb(var(--primary),0.7) !important;
-}
-
-.tiptap-editor .ProseMirror:is(.dark *) {
 	color: rgb(var(--primary),0.7) !important;
 }
 
