@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.13
+Version: 1.14
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -416,6 +416,30 @@ span {
 	color: rgb(var(--primary-rgb)) !important;
 }
 
+.flight-card-callsign {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.flight-card-pilot {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.flight-card-badge {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.flight-card-airport {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.weather-control-detail {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.flights-search-input {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
 /* Dark Mode section */
 :root:is(.dark) {
 	--primary: var(--primary-darkmode-color) !important;
@@ -737,7 +761,7 @@ span {
 }
 
 .card.card-info:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 	background-color: rgb(var(--secondary-rgb),0.9) !important;
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
 	--tw-ring-color: rgb(var(--secondary-rgb),0.9) !important;
@@ -766,95 +790,95 @@ span {
 
 /* Map Section Dark Mode */
 .sidebar-header:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 	background: rgb(var(--secondary-rgb), 0.1) !important;
 	background-color: rgb(var(--secondary-rgb), 0.1) !important;
 	border-color: rgb(var(--secondary-rgb), 0.1) !important;
 }
 
 .card-codes:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .card-name:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color))!important;
+	color: rgb(var(--primary-darkmode-color), 0.9)!important;
 }
 
 .card-action:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .card-placeholder-title:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color))!important;
+	color: rgb(var(--primary-darkmode-color), 0.9)!important;
 }
 .card-placeholder-text:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 .airport-card-placeholder-icon:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .airport-btn-dispatch:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 	background: rgb(var(--secondary-rgb),0.9) !important;
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
 }
 
 .airport-btn-dispatch:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color)) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
+	background-color: rgb(var(--secondary-rgb),0.7) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
 }
 
 .action-btn-reset:is(.dark *) {
 	background-color: rgb(var(--secondary-rgb),0.9)!important;
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .action-btn-reset:hover:is(.dark *) {
 	background-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 	border-color: rgb(var(--secondary-rgb),0.7)!important;
 }
 
 .airport-btn-info:is(.dark *) {
 	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .airport-btn-info:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9)!important;
-	color: rgb(var(--primary-darkmode-color)) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
+	background-color: rgb(var(--secondary-rgb),0.7)!important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
 }
 
 .weather-control-text:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .range-rings-label:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 .range-rings-icon:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
  
 .weather-toggle-active:is(.dark *) {
 	background: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
 }
 
 .route-card-label:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .route-card-value:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .route-card-icon:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .dispatch-btn:is(.dark *) {
@@ -870,55 +894,79 @@ span {
 .airport-btn-jumpseat:is(.dark *) {
 	background: rgb(var(--secondary-rgb),0.9) !important;
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .airport-btn-jumpseat:hover:is(.dark *) {
 	background: rgb(var(--secondary-rgb),0.7) !important;
 	border-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .filter-button:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .filter-panel-header:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 	background: rgb(var(--secondary-rgb), 0.1) !important;
 	background-color: rgb(var(--secondary-rgb), 0.1) !important;
 	border-color: rgb(var(--secondary-rgb), 0.1) !important;
 }
 
 .combobox-item:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .combobox-item:hover:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 	background: rgb(var(--secondary-rgb),0.9)!important;
 }
 
 .mode-toggle-btn:is(.dark *) {
 	background: rgb(var(--secondary-rgb),0.9)!important;
 	border-color: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .mode-toggle-btn:hover:is(.dark *) {
 	background: rgb(var(--secondary-rgb),0.7) !important;
 	border-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .helper-text:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .card-badge-current-location:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
 
 .card-badge-arrival:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color)) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.flight-card-callsign:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.flight-card-pilot:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.flight-card-badge:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.flight-card-airport:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.weather-control-detail:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.flights-search-input:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0,7) !important;
 }
