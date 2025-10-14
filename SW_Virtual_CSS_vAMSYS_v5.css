@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.14
+Version: 1.15
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -258,6 +258,13 @@ span {
 }
 
 /*Map section */
+.sidebar-header-large.has-aircraft-image {
+	background-image: var(--aircraft-image) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
 .sidebar-header {
 	color: rgb(var(--primary-rgb)) !important;
 	background: rgb(var(--primary-rgb), 0.1) !important;
@@ -437,6 +444,46 @@ span {
 }
 
 .flights-search-input {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.time-label {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.time-value {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.progress-phase {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.progress-aircraft {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.progress-info-item {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.route-card-header-value {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.progress-network {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.aircraft-attribution-label {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.aircraft-attribution-text {
+	color: rgb(var(--primary-rgb)) !important;
+}
+
+.card-badge-departure {
 	color: rgb(var(--primary-rgb)) !important;
 }
 
@@ -789,6 +836,13 @@ span {
 }
 
 /* Map Section Dark Mode */
+.sidebar-header-large.has-aircraft-image:is(.dark *) {
+	background-image: var(--aircraft-image) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
 .sidebar-header:is(.dark *) {
 	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 	background: rgb(var(--secondary-rgb), 0.1) !important;
@@ -969,4 +1023,44 @@ span {
 
 .flights-search-input:is(.dark *) {
 	color: rgb(var(--primary-darkmode-color), 0,7) !important;
+}
+
+.time-label:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.time-value:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.progress-phase:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.progress-aircraft:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.progress-info-item:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.route-card-header-value:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.progress-network:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.aircraft-attribution-label:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.aircraft-attribution-text:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.card-badge-departure:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
