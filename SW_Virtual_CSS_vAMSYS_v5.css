@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.15
+Version: 1.16
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 */
 
@@ -485,6 +485,23 @@ span {
 
 .card-badge-departure {
 	color: rgb(var(--primary-rgb)) !important;
+}
+
+.flight-progress-bar-fill {
+	background: rgb(var(--primary-rgb)) !important;
+	--marker-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.swap-btn {
+	background: rgb(var(--primary-rgb)) !important;
+	border-color: rgb(var(--primary-rgb)) !important;
+	color: white !important;
+}
+
+.swap-btn:hover {
+	background: rgb(var(--secondary-rgb)) !important;
+	border-color: rgb(var(--secondary-rgb)) !important;
+	color: white !important;
 }
 
 /* Dark Mode section */
@@ -1062,5 +1079,22 @@ span {
 }
 
 .card-badge-departure:is(.dark *) {
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.flight-progress-bar-fill:is(.dark *) {
+	background: rgb(var(--secondary-rgb),0.9)!important;
+	--marker-color: rgb(var(--secondary-rgb)) !important;
+}
+
+.swap-btn:is(.dark *) {
+	background: rgb(var(--secondary-rgb),0.9)!important;
+	border-color: rgb(var(--secondary-rgb),0.9) !important;
+	color: rgb(var(--primary-darkmode-color), 0.9) !important;
+}
+
+.swap-btn:hover:is(.dark *) {
+	background: rgb(var(--secondary-rgb),0.7)!important;
+	border-color: rgb(var(--secondary-rgb),0.7) !important;
 	color: rgb(var(--primary-darkmode-color), 0.9) !important;
 }
