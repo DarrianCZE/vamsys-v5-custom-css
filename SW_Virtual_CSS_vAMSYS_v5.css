@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 2.0
+Version: 2.0.1
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 Structure:
@@ -419,9 +419,9 @@ Structure:
 /* Light icons (e.g. the top-bar bulb) follow their parent in dark mode, like the other top-bar items */
 .fal:not(:hover):is(.dark *), .fa-light:not(:hover):is(.dark *) { color: inherit !important; }
 .text-primary:not(.btn):is(.dark *) { color: var(--tw-body-color) !important; }
-/* Accepted count on the dashboard: white, so it differs from pending (orange).
-   Only the text - cards with bg-success keep the orange background. */
-.text-success:is(.dark *) { color: var(--sw-text) !important; }
+/* Accepted count on the dashboard: neutral body colour like the other numbers (pending stays orange,
+   rejected red), mirroring light mode. Only the text - cards with bg-success keep the orange background. */
+.text-success:is(.dark *) { color: var(--tw-body-color) !important; }
 .dark\:text-success-400:is(.dark *) { color: var(--sw-accent) !important; }
 .text-info:is(.dark *) {
 	color: var(--sw-text) !important;
@@ -471,7 +471,9 @@ Structure:
 .focus\:ring-0:focus:is(.dark *) { --tw-ring-color: var(--sw-focus-ring) !important; }
 
 /* Tailwind dark: surfaces */
-.dark\:bg-gray-800:is(.dark *) {
+/* Elements that also carry a text-gray-* step (e.g. the dashboard date tabs) keep that step,
+   so the active tab stays brighter than the others */
+.dark\:bg-gray-800:not([class*="text-gray-"]):is(.dark *) {
 	background-color: rgb(49, 58, 70) !important;
 	color: var(--sw-text) !important;
 }
