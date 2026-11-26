@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 2.0.3
+Version: 2.0.4
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 Structure:
@@ -49,6 +49,19 @@ Structure:
 	--sw-danger-bg: rgb(var(--danger-rgb));
 
 	--sw-tint:          rgba(var(--primary-rgb), 0.1);   /* soft header backgrounds */
+	--sw-option-active: rgba(var(--primary-rgb), 0.1);   /* highlighted row in dropdown lists */
+
+	/* Info / warning alerts in page content: tinted panel with a coloured left edge */
+	--sw-alert-info-bg:   rgba(var(--primary-rgb), 0.08);
+	--sw-alert-info-edge: rgb(var(--primary-rgb));
+	--sw-alert-warn-bg:   rgba(var(--secondary-rgb), 0.14);
+	--sw-alert-warn-edge: rgb(var(--secondary-rgb));
+	--sw-link:            rgb(var(--primary-rgb));   /* links inside page content */
+
+	/* Quiet (outlined) secondary buttons; the dark values are in the dark block */
+	--sw-quiet-bg:       rgb(255,255,255);
+	--sw-quiet-border:   rgba(var(--primary-rgb), 0.35);
+	--sw-quiet-hover-bg: rgba(var(--primary-rgb), 0.08);
 	--sw-glass:         rgba(255,255,255,0.85);          /* map sidebar cards (vAMSYS: 0.6, map colours bleed through) */
 	--sw-icon-bg:       rgba(var(--secondary-rgb), 0.4); /* circle behind dispatch section icons */
 	--sw-meter:         rgb(var(--primary-rgb));         /* progress bars */
@@ -81,6 +94,13 @@ Structure:
 	--sw-danger-bg: rgba(var(--danger-rgb), 0.8);
 
 	--sw-tint:          rgba(var(--secondary-rgb), 0.1);
+	--sw-option-active: rgba(var(--secondary-rgb), 0.2);
+
+	--sw-alert-info-bg:   rgba(255,255,255,0.06);
+	--sw-alert-info-edge: rgba(255,255,255,0.55);
+	--sw-alert-warn-bg:   rgba(var(--secondary-rgb), 0.15);
+	--sw-alert-warn-edge: rgb(var(--secondary-rgb));
+	--sw-link:            rgb(var(--secondary-rgb));
 	--sw-glass:         rgba(var(--gray-800), 0.85);
 	--sw-icon-bg:       rgba(var(--secondary-rgb), 0.2);
 	--sw-meter:         rgb(var(--secondary-rgb));
@@ -99,6 +119,7 @@ Structure:
 
 	/* Dark surfaces (used by the dispatch page and a few utilities) */
 	--sw-surface:        rgb(var(--gray-800));
+	--sw-surface-raised: rgb(58, 68, 82);   /* dropdown panels floating over --sw-surface */
 	--sw-field-bg:       rgba(0,0,0,0.18);
 	--sw-field-border:   rgba(255,255,255,0.15);
 }
@@ -226,7 +247,7 @@ Structure:
 .dispatch-value, .dispatch-value-quota, .dispatch-meta, .dispatch-hint,
 .dispatch-section-summary, .dispatch-actions-summary, .dispatch-summary-fuel-row-pending,
 .dispatch-field-unit, .dispatch-ofp-field-value,
-.viewBookingFieldTitle, .tabular-nums,
+.tabular-nums,
 /* PIREP map buttons (vAMSYS: black text) */
 .control-btn {
 	color: var(--sw-text) !important;
@@ -282,6 +303,38 @@ Structure:
 	--tw-ring-color: var(--sw-danger-bg) !important;
 }
 .btn.btn-sm.btn-danger-outline:hover { filter: brightness(0.9); }
+
+/* --- Booking page, SimBrief Actions: Open OFP stays the solid main action (normal button + hover);
+       Edit SimBrief OFP, Navigraph Charts and Download become quiet outlined buttons.
+       Matched by link target / Livewire action; #booking-sidebar keeps it to this panel.
+       ("Manual SimBrief" links to /options/custom and stays a normal Booking Actions button.) --- */
+#booking-sidebar a[href*="dispatch.simbrief.com/options/"]:not([href*="/options/custom"]) .btn.btn-sm,
+#booking-sidebar a[href*="charts.navigraph.com"] .btn.btn-sm,
+#booking-sidebar .btn.btn-sm[wire\:click*="download"] {
+	color: var(--sw-text) !important;
+	background: var(--sw-quiet-bg) !important;
+	border: 1px solid var(--sw-quiet-border) !important;
+	box-shadow: none !important;
+}
+#booking-sidebar a[href*="dispatch.simbrief.com/options/"]:not([href*="/options/custom"]) .btn.btn-sm *,
+#booking-sidebar a[href*="charts.navigraph.com"] .btn.btn-sm *,
+#booking-sidebar .btn.btn-sm[wire\:click*="download"] * {
+	color: inherit !important;
+}
+#booking-sidebar a[href*="dispatch.simbrief.com/options/"]:not([href*="/options/custom"]) .btn.btn-sm:hover,
+#booking-sidebar a[href*="charts.navigraph.com"] .btn.btn-sm:hover,
+#booking-sidebar .btn.btn-sm[wire\:click*="download"]:hover {
+	background: var(--sw-quiet-hover-bg) !important;
+	border-color: var(--sw-btn-bg) !important;
+}
+
+/* --- Booking page fields: label softer than its value (vAMSYS dark: labels white, values grey) --- */
+.viewBookingFieldTitle { color: var(--sw-text-3) !important; }
+.viewBookingFieldContent, .viewBookingFieldContentPlain, .viewBookingFieldContentXl { color: var(--sw-text) !important; }
+
+/* --- Small grey outline buttons (Airport Information, METAR-TAF.com, Favorite, Aircraft Information):
+       vAMSYS ring is grey-700 in dark mode, practically invisible on the cards --- */
+.fi-btn-outlined.fi-btn-color-gray { --tw-ring-color: var(--sw-quiet-border) !important; }
 
 /* --- Text-only dispatch actions and status badges (must come after the button rules) --- */
 .dispatch-action.dispatch-action-manage-favourites,
@@ -350,7 +403,19 @@ Structure:
 	color: rgb(255,255,255) !important;
 	background-color: var(--sw-danger) !important;
 }
-.alert.alert-warning { color: var(--sw-on-fill) !important; }
+/* Info / warning alerts (e.g. Pegasus ACARS page): tinted panel, coloured left edge, normal text colour */
+.alert.alert-info, .alert.alert-warning {
+	color: var(--sw-text) !important;
+	border: 0 !important;
+	border-left: 4px solid var(--sw-alert-edge) !important;
+	background: var(--sw-alert-panel) !important;
+}
+.alert.alert-info *, .alert.alert-warning * { color: inherit !important; }
+.alert.alert-info    { --sw-alert-panel: var(--sw-alert-info-bg); --sw-alert-edge: var(--sw-alert-info-edge); }
+.alert.alert-warning { --sw-alert-panel: var(--sw-alert-warn-bg); --sw-alert-edge: var(--sw-alert-warn-edge); }
+
+/* Links inside page content (vAMSYS: Tailwind blue) */
+.ProseMirror a:not(.btn) { color: var(--sw-link) !important; text-decoration: underline; }
 
 /* --- Borders, rings, focus --- */
 .border-primary { border-color: var(--sw-btn-bg) !important; }
@@ -396,6 +461,8 @@ Structure:
 	background-color: var(--sw-icon-bg) !important;
 }
 .dispatch-meter-fill { background: var(--sw-meter) !important; }
+/* Aircraft picker and other Flux dropdowns: highlighted row (vAMSYS: Tailwind zinc grey) */
+.dispatch-page ui-option[data-active] { background-color: var(--sw-option-active) !important; }
 .dispatch-finder-card-vfr {
 	color: var(--sw-text) !important;
 	border-color: var(--sw-btn-bg) !important;
@@ -406,8 +473,16 @@ Structure:
    ============================================================ */
 
 /* Dispatch page: same grey cards as the rest of Phoenix (vAMSYS default is navy) */
-.dispatch-card:is(.dark *), .dispatch-section-card:is(.dark *) {
+.dispatch-card:is(.dark *), .dispatch-section:is(.dark *), .dispatch-section-card:is(.dark *),
+.dispatch-actions-card:is(.dark *) {
 	background-color: var(--sw-surface) !important;
+}
+/* Bottom "Create Booking" bar: vAMSYS uses a Tailwind gray-700 border here, other cards have none */
+.dispatch-actions-card:is(.dark *) { border-color: var(--sw-surface) !important; }
+/* Dropdown panel (aircraft picker etc.): raised blue-grey instead of Flux zinc-700 */
+.dispatch-page :has(> ui-options):is(.dark *) {
+	background-color: var(--sw-surface-raised) !important;
+	border-color: var(--sw-field-border) !important;
 }
 /* OFP summary groups: vAMSYS uses grey-800 at 30%, which disappears on the grey cards */
 .dispatch-ofp-group:is(.dark *),
