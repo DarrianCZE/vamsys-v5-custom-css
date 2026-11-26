@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 2.0.4
+Version: 2.0.5
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 Structure:
@@ -413,6 +413,18 @@ Structure:
 .alert.alert-info *, .alert.alert-warning * { color: inherit !important; }
 .alert.alert-info    { --sw-alert-panel: var(--sw-alert-info-bg); --sw-alert-edge: var(--sw-alert-info-edge); }
 .alert.alert-warning { --sw-alert-panel: var(--sw-alert-warn-bg); --sw-alert-edge: var(--sw-alert-warn-edge); }
+
+/* Dashboard: the booked-flight card (card-info) uses the same tinted panel as warning alerts,
+   instead of a solid orange block among the blue/orange completed-PIREP cards */
+.card.card-info.dashboard-card-booking {
+	color: var(--sw-text) !important;
+	background: var(--sw-alert-warn-bg) !important;
+	border: 0 !important;
+	border-left: 4px solid var(--sw-alert-warn-edge) !important;
+	--tw-ring-color: transparent !important;
+}
+.card.card-info.dashboard-card-booking * { color: inherit !important; }
+.card.card-info.dashboard-card-booking:hover { background: rgba(var(--secondary-rgb), 0.24) !important; }
 
 /* Links inside page content (vAMSYS: Tailwind blue) */
 .ProseMirror a:not(.btn) { color: var(--sw-link) !important; text-decoration: underline; }

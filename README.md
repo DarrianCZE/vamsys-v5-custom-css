@@ -32,9 +32,23 @@ From version 2.0, every colour decision lives in one place: the **design tokens*
 | `--sw-on-fill` | Text on filled buttons and accent surfaces. In dark mode, `rgb(18,19,28)` gives much better contrast on a bright secondary colour. |
 | `--sw-glass` | Opacity of the map sidebar cards |
 | `--sw-danger` / `--sw-danger-bg` | Danger alerts, Cancel Booking, MZFW exceeded |
+| `--sw-quiet-*` | Outlined secondary buttons (map buttons in dark mode, SimBrief Actions) |
+| `--sw-alert-info-*` / `--sw-alert-warn-*` | Tinted info and warning panels (also the booked-flight card) |
+| `--sw-link` | Links inside page content |
+
+## What's new in 2.0.1 – 2.0.5
+- **2.0.5:** the booked-flight card on the dashboard is a tinted panel with an orange edge instead of a solid orange block.
+- **2.0.4:**
+  - aircraft picker card, dropdown and highlighted row match the theme;
+  - the Create Booking bar uses the same grey as the other cards in dark mode;
+  - booking page: Edit SimBrief OFP, Navigraph Charts and Download are quiet outlined buttons (Open OFP stays solid), field labels are softer than values, small outline buttons have a visible ring;
+  - info and warning alerts are tinted panels with a coloured left edge, and links in page content use the theme colour.
+- **2.0.3:** the Dispatch Flight button glows in the secondary colour instead of vAMSYS green.
+- **2.0.2:** dark mode: Dispatch Flight is the one solid button on the Book Flight Map; the other map buttons are outlined.
+- **2.0.1:** dark mode: the active dashboard tab is brighter than the others again, and the accepted PIREP count uses the neutral text colour.
 
 ## What's new in 2.0
-- Rebuilt around design tokens: about 480 lines instead of about 1,700, with each component written once instead of once per mode.
+- Rebuilt around design tokens, with each component written once instead of once per mode (about 600 lines instead of about 1,700).
 - Fixed declarations that browsers silently ignored (wrong colour syntax, `0,6` instead of `0.6`, a `rgbaa(` typo).
 - Danger stays red: danger alerts, the Cancel Booking and Cancel & Rebook buttons, and the MZFW-exceeded badge in dark mode.
 - Dashboard PIREP counts: accepted and pending now use different colours in both modes.

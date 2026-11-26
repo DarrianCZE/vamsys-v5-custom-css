@@ -22,7 +22,7 @@ the file is pasted into vAMSYS as-is.
 - **Bump `Version:`** in the header comment for every released change, and mention it in the commit
   message (history uses messages like `1.20 fix dispatcher rmk`).
 
-## How the stylesheet is organised (v2.0)
+## How the stylesheet is organised (v2.0.x)
 
 1. **Brand colours** - the four user-editable RGB triplets.
 2. **Design tokens** - `--sw-*` variables, defined once in `:root` (light) and once in
@@ -30,9 +30,11 @@ the file is pasted into vAMSYS as-is.
    `--sw-text`, `--sw-text-2..4` (text steps, strongest to weakest), `--sw-btn-bg`,
    `--sw-btn-hover-bg`, `--sw-accent`, `--sw-accent-hover`, `--sw-on-fill`, `--sw-danger`,
    `--sw-danger-bg`, `--sw-tint`, `--sw-glass`, `--sw-icon-bg`, `--sw-meter`, `--sw-focus-ring`,
-   `--sw-gradient-from`, `--sw-alert-*`, and dark-only `--sw-surface`, `--sw-field-bg`,
-   `--sw-field-border`, `--sw-quiet-*` (outlined secondary map buttons, so Dispatch Flight stays
-   the only solid button in dark mode).
+   `--sw-gradient-from`, `--sw-alert-*` (success alert), `--sw-alert-info-*` / `--sw-alert-warn-*`
+   (tinted info/warning panels, also the dashboard booked-flight card), `--sw-link`,
+   `--sw-option-active` (highlighted dropdown row), `--sw-quiet-*` (outlined secondary buttons:
+   map buttons in dark mode, SimBrief Actions), and dark-only `--sw-surface`,
+   `--sw-surface-raised` (dropdown panels), `--sw-field-bg`, `--sw-field-border`.
 3. **vAMSYS variable remap** - overrides vAMSYS/Filament/Tailwind variables (`--primary`,
    `--success`, `--gray-*`, `--tw-*`). Values are RGB triplets because vAMSYS consumes them as
    `rgb(var(--x))`.
@@ -66,8 +68,15 @@ the file is pasted into vAMSYS as-is.
   - The text-only dispatch actions come **after** the filled-button and hover groups.
 - **Semantic colours.** Keep danger red (`--danger-rgb`) for danger: alerts, `btn-danger-outline`
   (Cancel Booking), MZFW exceeded, callsign taken. Dark `--success` stays the secondary colour,
-  because cards with `bg-success` use it as a background. The dashboard *text* is fixed separately
-  with `.text-success:is(.dark *)`.
+  because cards with `bg-success` use it as a background. The dashboard accepted count (*text*) uses
+  the neutral body colour via `.text-success:is(.dark *)`.
+- **vAMSYS default leftovers.** Several components hard-code Tailwind colours that the remap does
+  not reach: emerald shadow on `.dispatch-btn`, navy `rgb(17,24,39)` on `.dispatch-section` and
+  `.dispatch-actions-card`, Flux `zinc` on dropdown panels (`ui-options`). Check computed colours,
+  not only the class names.
+- **Booking page buttons** are matched by link target or Livewire action (`a[href*="sb_ofp"]`,
+  `[wire\:click*="download"]`) inside `#booking-sidebar`. Any override of a solid button must keep
+  a `:hover` state; Booking Actions themselves are intentionally left as normal solid buttons.
 - **Broad utilities.** `.text-white`, `.bg-transparent` and `.hover\:text-white` in dark mode catch
   many elements. `ui-select` (dispatch dropdowns) is explicitly excluded from `.bg-transparent`.
 - **Map pages re-initialise on theme change.** Toggling `.dark` on `/phoenix/flight-center/book`
@@ -97,8 +106,12 @@ There is no automated suite. Check in a browser, signed in to Phoenix:
 
 ## Known gaps
 
-- `card-primary`, `card-info`, `card-warning` and `card-danger` have not been seen on any Phoenix
-  page during testing. Their rules are kept but unverified.
+- `card-info` appears on the dashboard booked-flight card (verified). `card-primary`,
+  `card-warning` and `card-danger` have not been seen on any Phoenix page; their rules are unverified.
+  `alert-info` / `alert-warning` appear on the Pegasus ACARS page (verified).
+- Open accessibility items: `--sw-text-4` is below 4.5:1 for small text (about 3.4:1 light,
+  4.2:1 dark); keyboard focus has no themed `:focus-visible` outline; dark top-bar items
+  (`--tw-topbar-item-color`, `rgb(131,145,162)`) are about 3.6:1.
 - `.fal` / `.fa-light` hover rules target Font Awesome Light, which vAMSYS currently uses only for
   the top-bar bulb.
 - Contrast: white text on the secondary orange is about 2.4:1. Setting `--sw-on-fill` to
