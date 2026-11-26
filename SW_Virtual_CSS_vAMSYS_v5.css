@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 2.0.2
+Version: 2.0.3
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 Structure:
@@ -325,6 +325,13 @@ Structure:
 .dispatch-btn:hover {
 	background: var(--sw-accent-hover) !important;
 	border-color: var(--sw-accent-hover) !important;
+}
+/* vAMSYS gives Dispatch Flight a green (emerald) shadow that glows on hover; use the accent colour */
+.dispatch-btn {
+	box-shadow: 0 4px 12px rgba(var(--secondary-rgb), 0.25), inset 0 1px 0 rgba(255,255,255,0.15) !important;
+}
+.dispatch-btn:hover {
+	box-shadow: 0 6px 18px rgba(var(--secondary-rgb), 0.45), inset 0 1px 0 rgba(255,255,255,0.15) !important;
 }
 
 .card.card-warning, .card.card-danger {
