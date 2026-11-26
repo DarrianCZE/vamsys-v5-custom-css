@@ -82,6 +82,18 @@ the file is pasted into vAMSYS as-is.
 - **Map pages re-initialise on theme change.** Toggling `.dark` on `/phoenix/flight-center/book`
   or the flight map reloads the map and clears the selected airport or route.
 - **Charts** on PIREP pages are drawn on canvas; CSS cannot recolour their lines.
+- **One pattern for alerts and highlighted panels.** Success / info / warning alerts and the
+  dashboard booked-flight card share one rule: tinted panel, 4px left edge, `--sw-text`. Each sets
+  only `--sw-alert-panel` and `--sw-alert-edge`. Add new panels by setting those two variables, not
+  by writing another full rule. `alert-danger` is the exception: a solid `--sw-danger-bg` fill.
+- **Danger colours use `color-mix()`.** `--sw-danger` / `--sw-danger-bg` are mixed from
+  `--danger-rgb` (72% with black in light mode and for fills, 55% with white for dark-mode text) so
+  any user-chosen red stays readable. Note that computed values come back as `color(srgb …)`, so
+  contrast scripts must parse that notation.
+- **Dark neutral text.** `--tw-body-color` in dark mode equals `--sw-text`
+  (`--primary-darkmode-color` at 85%); only the sidebar menu and top bar keep `#aab8c5`.
+- **Opacity dimming.** vAMSYS dims some captions with `opacity` on the element itself
+  (`.card-action`, `.card-placeholder-text`); colour fixes alone don't help there.
 - **Contrast floors (WCAG AA, 4.5:1 for small text).** Text tokens are alpha steps of one colour,
   so the weakest step sets the floor: `--sw-text-4` must stay >= 0.76 in light mode and >= 0.6 in
   dark mode (it is also used on the raised dropdown panel). The keyboard focus outline
@@ -99,14 +111,15 @@ There is no automated suite. Check in a browser, signed in to Phoenix:
    `document.documentElement.classList.add('dark')` to preview without changing account settings.
 3. Validity: after loading, check that no declaration was dropped. Resolve `var()` values and run
    `CSS.supports(prop, value)` on each, or compare computed colours before and after.
-4. Pages worth covering (each in light and dark):
+4. Pages worth covering (each in light and dark, and the main ones also at 375 px phone width):
    - dashboard (`/phoenix`)
    - PIREPs list and a PIREP detail page
    - dispatch: empty, with all sections expanded, and with the OFP summary open
    - booking page (`/phoenix/flight-center/booking/<id>`)
    - flight map with a flight selected
    - Book Flight Map with an airport and a route selected
-   - settings, events, NOTAMs
+   - settings, events, NOTAMs, leaderboard, profile, Pegasus ACARS (info/warning alerts)
+   - live map Help & Guide pop-up (`.help-btn`)
 5. Never click irreversible actions while testing: Create Booking, Cancel Booking, Generate OFP,
    Send to VATSIM, comment or claim forms.
 

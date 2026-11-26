@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 2.0.6
+Version: 2.0.7
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 Structure:
@@ -46,8 +46,10 @@ Structure:
 	   Tip: in dark mode, rgb(18,19,28) here gives ~7:1 contrast on orange instead of ~2.4:1. */
 	--sw-on-fill: rgb(255,255,255);
 
-	--sw-danger:    rgb(var(--danger-rgb));
-	--sw-danger-bg: rgb(var(--danger-rgb));
+	/* Danger: derived from --danger-rgb. A bright red is only ~3.3:1 with white, so fills and
+	   red text on white use a darkened mix (~5.8:1); dark mode uses a lightened mix for red text. */
+	--sw-danger:    color-mix(in srgb, rgb(var(--danger-rgb)) 72%, black);
+	--sw-danger-bg: color-mix(in srgb, rgb(var(--danger-rgb)) 72%, black);
 
 	--sw-tint:          rgba(var(--primary-rgb), 0.1);   /* soft header backgrounds */
 	--sw-option-active: rgba(var(--primary-rgb), 0.1);   /* highlighted row in dropdown lists */
@@ -70,9 +72,8 @@ Structure:
 	--sw-focus-outline: rgb(var(--primary-rgb));         /* keyboard focus; orange on white is only 2.4:1 */
 	--sw-gradient-from: rgb(var(--primary-rgb));
 
-	/* Alerts (e.g. the welcome box on the dashboard) */
-	--sw-alert-bg:     rgb(var(--primary-rgb));
-	--sw-alert-fg:     rgb(255,255,255);
+	/* Success alert (the dashboard welcome box): tinted panel + left edge, like info/warning */
+	--sw-alert-bg:     rgba(var(--primary-rgb), 0.08);
 	--sw-alert-border: rgb(var(--primary-rgb));
 }
 
@@ -92,8 +93,8 @@ Structure:
 
 	--sw-on-fill: rgba(var(--primary-darkmode-color), 0.9);
 
-	--sw-danger:    rgb(var(--danger-rgb));
-	--sw-danger-bg: rgba(var(--danger-rgb), 0.8);
+	--sw-danger:    color-mix(in srgb, rgb(var(--danger-rgb)) 55%, white);   /* >= 4.5:1 also on tinted panels */
+	--sw-danger-bg: color-mix(in srgb, rgb(var(--danger-rgb)) 72%, black);
 
 	--sw-tint:          rgba(var(--secondary-rgb), 0.1);
 	--sw-option-active: rgba(var(--secondary-rgb), 0.2);
@@ -111,8 +112,7 @@ Structure:
 	--sw-gradient-from: rgba(var(--secondary-rgb), 0.8);
 
 	--sw-alert-bg:     rgba(var(--secondary-rgb), 0.15);
-	--sw-alert-fg:     rgba(var(--primary-darkmode-color), 0.9);
-	--sw-alert-border: rgba(var(--secondary-rgb), 0.6);
+	--sw-alert-border: rgb(var(--secondary-rgb));
 
 	/* Quiet secondary buttons (Book Flight Map: Info, Jump, Reset, Pick Random),
 	   so the solid Dispatch Flight button stays the one main action, as in light mode */
@@ -166,7 +166,7 @@ Structure:
 	--tw-topbar-bg: rgba(var(--gray-800)) !important;
 	--tw-menu-bg: #313a46 !important;
 	--tw-body-bg: #2d333c !important;
-	--tw-body-color: #aab8c5 !important;
+	--tw-body-color: rgba(var(--primary-darkmode-color), 0.85) !important;   /* = --sw-text: one neutral text colour in dark mode */
 	--tw-menu-item-color: #aab8c5 !important;
 	--tw-menu-item-active-color: rgb(var(--secondary-rgb)) !important;
 	--tw-menu-item-hover-color: rgb(var(--secondary-rgb)) !important;
@@ -255,6 +255,14 @@ Structure:
 .control-btn {
 	color: var(--sw-text) !important;
 }
+
+/* PIREP map buttons: the inner label span has its own black colour in vAMSYS */
+.control-btn * { color: inherit !important; }
+/* Book Flight Map airport cards: vAMSYS dims the placeholder card and some captions with opacity
+   0.5-0.6 (down to ~2.2:1); use full opacity and the weaker text step instead */
+.airport-card-placeholder, .card-action, .card-placeholder-text { opacity: 1 !important; }
+.card-action, .card-placeholder-text,
+.airport-card-placeholder :is(.card-placeholder-title, .card-badge) { color: var(--sw-text-3) !important; }
 
 /* --- Icons --- */
 .fal:hover, .fa-light:hover { color: var(--sw-accent) !important; }
@@ -378,15 +386,13 @@ Structure:
 	--tw-ring-color: var(--sw-accent) !important;
 }
 .active.fc-tab-active\:text-gray-900 { font-weight: 600 !important; border-bottom-color: white !important; }
-.dispatch-btn:hover {
-	background: var(--sw-accent-hover) !important;
-	border-color: var(--sw-accent-hover) !important;
-}
 /* vAMSYS gives Dispatch Flight a green (emerald) shadow that glows on hover; use the accent colour */
 .dispatch-btn {
 	box-shadow: 0 4px 12px rgba(var(--secondary-rgb), 0.25), inset 0 1px 0 rgba(255,255,255,0.15) !important;
 }
 .dispatch-btn:hover {
+	background: var(--sw-accent-hover) !important;
+	border-color: var(--sw-accent-hover) !important;
 	box-shadow: 0 6px 18px rgba(var(--secondary-rgb), 0.45), inset 0 1px 0 rgba(255,255,255,0.15) !important;
 }
 
@@ -396,38 +402,51 @@ Structure:
 	--tw-ring-color: var(--sw-danger-bg) !important;
 }
 
-/* --- Alerts --- */
-.alert.alert-success {
-	color: var(--sw-alert-fg) !important;
-	background-color: var(--sw-alert-bg) !important;
-	border: 1px solid var(--sw-alert-border) !important;
-}
-.alert.alert-danger {
-	color: rgb(255,255,255) !important;
-	background-color: var(--sw-danger) !important;
-}
-/* Info / warning alerts (e.g. Pegasus ACARS page): tinted panel, coloured left edge, normal text colour */
-.alert.alert-info, .alert.alert-warning {
+/* --- Alerts and highlighted panels: one pattern for all of them -
+       tinted panel, 4px coloured left edge, normal text colour.
+       success = dashboard welcome box, info/warning = page content (e.g. Pegasus ACARS),
+       plus the dashboard booked-flight card (card-info), which uses the warning colours. --- */
+.alert.alert-success, .alert.alert-info, .alert.alert-warning,
+.card.card-info.dashboard-card-booking {
 	color: var(--sw-text) !important;
 	border: 0 !important;
 	border-left: 4px solid var(--sw-alert-edge) !important;
 	background: var(--sw-alert-panel) !important;
-}
-.alert.alert-info *, .alert.alert-warning * { color: inherit !important; }
-.alert.alert-info    { --sw-alert-panel: var(--sw-alert-info-bg); --sw-alert-edge: var(--sw-alert-info-edge); }
-.alert.alert-warning { --sw-alert-panel: var(--sw-alert-warn-bg); --sw-alert-edge: var(--sw-alert-warn-edge); }
-
-/* Dashboard: the booked-flight card (card-info) uses the same tinted panel as warning alerts,
-   instead of a solid orange block among the blue/orange completed-PIREP cards */
-.card.card-info.dashboard-card-booking {
-	color: var(--sw-text) !important;
-	background: var(--sw-alert-warn-bg) !important;
-	border: 0 !important;
-	border-left: 4px solid var(--sw-alert-warn-edge) !important;
 	--tw-ring-color: transparent !important;
 }
+.alert.alert-success *, .alert.alert-info *, .alert.alert-warning *,
 .card.card-info.dashboard-card-booking * { color: inherit !important; }
-.card.card-info.dashboard-card-booking:hover { background: rgba(var(--secondary-rgb), 0.24) !important; }
+.alert.alert-success { --sw-alert-panel: var(--sw-alert-bg);      --sw-alert-edge: var(--sw-alert-border); }
+.alert.alert-info    { --sw-alert-panel: var(--sw-alert-info-bg); --sw-alert-edge: var(--sw-alert-info-edge); }
+.alert.alert-warning,
+.card.card-info.dashboard-card-booking { --sw-alert-panel: var(--sw-alert-warn-bg); --sw-alert-edge: var(--sw-alert-warn-edge); }
+.card.card-info.dashboard-card-booking:hover { --sw-alert-panel: rgba(var(--secondary-rgb), 0.24); }
+
+/* Leaderboard "Your Position" box (vAMSYS bg-primary/10 + border-l-4): same panel as the success alert.
+   In dark mode vAMSYS resolves it to white at 20% with grey text. */
+.bg-primary\/10.border-l-4 {
+	color: var(--sw-text) !important;
+	background: var(--sw-alert-bg) !important;
+	border-left-color: var(--sw-alert-border) !important;
+}
+.bg-primary\/10.border-l-4 *:not([class*="text-red-"]) { color: inherit !important; }
+/* Negative trends etc. (Tailwind red-600 / red-400): readable danger red */
+.text-red-600 { color: var(--sw-danger) !important; }
+
+/* Live map "Help & Guide" pop-up (Svelte, fixed navy + Tailwind light blue) */
+.help-step-number, .help-shortcut-key, .help-tip {
+	background: var(--sw-tint) !important;
+	border-color: var(--sw-quiet-border) !important;
+}
+.help-step-number, .help-shortcut-key { color: var(--sw-btn-bg) !important; }
+
+/* Danger alert stays a solid fill (darkened danger colour, so white text is readable) */
+.alert.alert-danger {
+	color: rgb(255,255,255) !important;
+	background-color: var(--sw-danger-bg) !important;
+}
+/* vAMSYS danger text on its pale danger panel (e.g. "Reasons for PIREP Review") */
+.text-danger-700, .bg-danger-50 li { color: var(--sw-danger) !important; }
 
 /* Links inside page content (vAMSYS: Tailwind blue) */
 .ProseMirror a:not(.btn) { color: var(--sw-link) !important; text-decoration: underline; }
@@ -466,7 +485,7 @@ Structure:
 	background-color: var(--sw-glass) !important;
 }
 /* vAMSYS gives the clickable airport card an indigo border in dark mode */
-.airport-card-clickable:is(.dark *) { border-color: rgba(255,255,255,0.1) !important; }
+.airport-card-clickable:is(.dark *) { border-color: var(--sw-field-border) !important; }
 .flight-progress-bar-fill {
 	background: var(--sw-meter) !important;
 	--marker-color: rgb(var(--secondary-rgb)) !important;
@@ -500,6 +519,13 @@ Structure:
 }
 /* Bottom "Create Booking" bar: vAMSYS uses a Tailwind gray-700 border here, other cards have none */
 .dispatch-actions-card:is(.dark *) { border-color: var(--sw-surface) !important; }
+/* Live map "Help & Guide" pop-up: Phoenix grey instead of navy */
+.help-modal:is(.dark *) {
+	background-color: var(--sw-surface) !important;
+	border-color: var(--sw-field-border) !important;
+}
+.help-shortcut:is(.dark *) { background-color: var(--sw-field-bg) !important; }
+
 /* Dropdown panel (aircraft picker etc.): raised blue-grey instead of Flux zinc-700 */
 .dispatch-page :has(> ui-options):is(.dark *) {
 	background-color: var(--sw-surface-raised) !important;
@@ -604,7 +630,7 @@ Structure:
 /* Elements that also carry a text-gray-* step (e.g. the dashboard date tabs) keep that step,
    so the active tab stays brighter than the others */
 .dark\:bg-gray-800:not([class*="text-gray-"]):is(.dark *) {
-	background-color: rgb(49, 58, 70) !important;
+	background-color: var(--sw-surface) !important;
 	color: var(--sw-text) !important;
 }
 .dark\:bg-\[\#060818\]:is(.dark *) {

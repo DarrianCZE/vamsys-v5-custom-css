@@ -31,12 +31,20 @@ From version 2.0, every colour decision lives in one place: the **design tokens*
 | `--sw-accent` | Accent surfaces: the dispatch button, active tabs, highlighted cards |
 | `--sw-on-fill` | Text on filled buttons and accent surfaces. In dark mode, `rgb(18,19,28)` gives much better contrast on a bright secondary colour. |
 | `--sw-glass` | Opacity of the map sidebar cards |
-| `--sw-danger` / `--sw-danger-bg` | Danger alerts, Cancel Booking, MZFW exceeded |
+| `--sw-danger` / `--sw-danger-bg` | Red text and red fills (danger alerts, Cancel Booking, MZFW exceeded), derived from `--danger-rgb` |
+| `--sw-alert-bg` / `--sw-alert-border` | The dashboard welcome box (success alert) |
 | `--sw-quiet-*` | Outlined secondary buttons (map buttons in dark mode, SimBrief Actions) |
 | `--sw-alert-info-*` / `--sw-alert-warn-*` | Tinted info and warning panels (also the booked-flight card) |
 | `--sw-link` | Links inside page content |
 
-## What's new in 2.0.1 – 2.0.6
+## What's new in 2.0.1 – 2.0.7
+- **2.0.7:**
+  - the dashboard welcome box uses the same tinted panel with a coloured left edge as the other alerts, in both modes;
+  - danger colours are derived from `--danger-rgb` so white text on red buttons/alerts and red text are readable (~5.8:1);
+  - dark mode uses one neutral text colour (page text matches labels and titles);
+  - themed the leaderboard "Your Position" box, the live-map Help & Guide pop-up, PIREP map button labels and the Book Flight Map airport-card captions;
+  - checked at phone width (375 px) as well, no horizontal scrolling.
+  - Note: uses CSS `color-mix()` (all current browsers).
 - **2.0.6 (accessibility):**
   - all text, including the faintest grey labels, now meets WCAG AA contrast (4.5:1) in both modes;
   - keyboard focus shows a 2px outline (primary colour in light mode, secondary in dark mode);
