@@ -1,26 +1,106 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 1.20
+Version: 2.0
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
+
+Structure:
+  1. Brand colours        - the only values you normally edit
+  2. Design tokens        - light mode, then dark mode (all colour decisions live here)
+  3. vAMSYS variable remap
+  4. Components           - written once, coloured only through tokens
+  5. Dark-only overrides  - Tailwind "dark:" utilities that exist only in dark mode
 */
 
-:root{ /* Variable section of the CSS, edit your colors only here: */
-	--primary-rgb: 0,69,138; /* Primary VA Color in RGB format. Should be darker. */
-	--secondary-rgb: 241,144,1; /* Secondary VA Color in RGB format. Should be brighter. */
-	--primary-darkmode-color: 255,255,255; /* Primary Dark mode color. In this case, it's white, but theoretically it can be any very bright color. */
-	--danger-rgb: 241, 87, 118; /* Warning color, I recommend some shade of red. */
+/* ============================================================
+   1. Brand colours (RGB triplets, comma separated)
+   ============================================================ */
+:root {
+	--primary-rgb: 0,69,138;               /* Primary VA colour. Should be darker. */
+	--secondary-rgb: 241,144,1;            /* Secondary VA colour. Should be brighter. */
+	--primary-darkmode-color: 255,255,255; /* Text colour in dark mode. Any very bright colour. */
+	--danger-rgb: 241,87,118;              /* Warning/danger colour, some shade of red. */
 }
 
-/* Light mode section */
-.menu .menu-item .menu-link>.menu-text {
-	font-weight: 450;
+/* ============================================================
+   2. Design tokens
+   ============================================================ */
+:root {
+	--sw-fg: var(--primary-rgb);
+
+	/* Text: 4 steps, strongest to weakest */
+	--sw-text:   rgb(var(--sw-fg));
+	--sw-text-2: rgba(var(--sw-fg), 0.85);
+	--sw-text-3: rgba(var(--sw-fg), 0.75);
+	--sw-text-4: rgba(var(--sw-fg), 0.6);
+
+	/* Filled buttons, badges, chips */
+	--sw-btn-bg:       rgb(var(--primary-rgb));
+	--sw-btn-hover-bg: rgb(var(--secondary-rgb));
+
+	/* Accent surfaces (orange cards, active tabs, the main dispatch button) */
+	--sw-accent:          rgb(var(--secondary-rgb));
+	--sw-accent-hover:    rgba(var(--secondary-rgb), 0.7);
+
+	/* Text on filled buttons and accent surfaces.
+	   Tip: in dark mode, rgb(18,19,28) here gives ~7:1 contrast on orange instead of ~2.4:1. */
+	--sw-on-fill: rgb(255,255,255);
+
+	--sw-danger:    rgb(var(--danger-rgb));
+	--sw-danger-bg: rgb(var(--danger-rgb));
+
+	--sw-tint:          rgba(var(--primary-rgb), 0.1);   /* soft header backgrounds */
+	--sw-glass:         rgba(255,255,255,0.85);          /* map sidebar cards (vAMSYS: 0.6, map colours bleed through) */
+	--sw-icon-bg:       rgba(var(--secondary-rgb), 0.4); /* circle behind dispatch section icons */
+	--sw-meter:         rgb(var(--primary-rgb));         /* progress bars */
+	--sw-focus-ring:    rgb(var(--secondary-rgb));
+	--sw-gradient-from: rgb(var(--primary-rgb));
+
+	/* Alerts (e.g. the welcome box on the dashboard) */
+	--sw-alert-bg:     rgb(var(--primary-rgb));
+	--sw-alert-fg:     rgb(255,255,255);
+	--sw-alert-border: rgb(var(--primary-rgb));
 }
 
-.striped-padded-table table tbody tr td {
-	color: rgb(var(--primary-rgb)) !important;
+:root:is(.dark) {
+	--sw-fg: var(--primary-darkmode-color);
+
+	--sw-text:   rgba(var(--sw-fg), 0.85);
+	--sw-text-2: rgba(var(--sw-fg), 0.75);
+	--sw-text-3: rgba(var(--sw-fg), 0.65);
+	--sw-text-4: rgba(var(--sw-fg), 0.5);
+
+	--sw-btn-bg:       rgba(var(--secondary-rgb), 0.9);
+	--sw-btn-hover-bg: rgba(var(--secondary-rgb), 0.7);
+
+	--sw-accent:       rgba(var(--secondary-rgb), 0.9);
+	--sw-accent-hover: rgba(var(--secondary-rgb), 0.7);
+
+	--sw-on-fill: rgba(var(--primary-darkmode-color), 0.9);
+
+	--sw-danger:    rgb(var(--danger-rgb));
+	--sw-danger-bg: rgba(var(--danger-rgb), 0.8);
+
+	--sw-tint:          rgba(var(--secondary-rgb), 0.1);
+	--sw-glass:         rgba(var(--gray-800), 0.85);
+	--sw-icon-bg:       rgba(var(--secondary-rgb), 0.2);
+	--sw-meter:         rgb(var(--secondary-rgb));
+	--sw-focus-ring:    rgba(var(--secondary-rgb), 0.8);
+	--sw-gradient-from: rgba(var(--secondary-rgb), 0.8);
+
+	--sw-alert-bg:     rgba(var(--secondary-rgb), 0.15);
+	--sw-alert-fg:     rgba(var(--primary-darkmode-color), 0.9);
+	--sw-alert-border: rgba(var(--secondary-rgb), 0.6);
+
+	/* Dark surfaces (used by the dispatch page and a few utilities) */
+	--sw-surface:        rgb(var(--gray-800));
+	--sw-field-bg:       rgba(0,0,0,0.18);
+	--sw-field-border:   rgba(255,255,255,0.15);
 }
 
-:root{
+/* ============================================================
+   3. vAMSYS variable remap
+   ============================================================ */
+:root {
 	--primary: var(--primary-rgb) !important;
 	--primary-600: var(--secondary-rgb) !important;
 	--success: var(--primary-rgb) !important;
@@ -29,11 +109,11 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	--info: var(--primary-rgb) !important;
 	--info-500: var(--primary-rgb) !important;
 	--info-600: var(--primary-rgb) !important;
-	--warning: var(--primary-rgb) !important;
+	--warning: var(--secondary-rgb) !important;
 	--gray-400: var(--primary-rgb) !important;
-	--gray-950: var(--primary-rgb) !important;
-	--gray-800: var(--primary-rgb) !important;
 	--gray-500: var(--primary-rgb) !important;
+	--gray-800: var(--primary-rgb) !important;
+	--gray-950: var(--primary-rgb) !important;
 	--tw-body-color: rgb(var(--primary-rgb)) !important;
 	--tw-menu-item-color: rgb(var(--primary-rgb)) !important;
 	--tw-topbar-item-color: rgb(var(--primary-rgb)) !important;
@@ -41,1642 +121,363 @@ Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 	--tw-topbar-item-active-color: rgb(var(--secondary-rgb)) !important;
 	--tw-menu-item-hover-color: rgb(var(--secondary-rgb)) !important;
 	--tw-topbar-item-hover-color: rgb(var(--secondary-rgb)) !important;
-	--tw-gradient-from: rgb(var(--primary-rgb)) var(--tw-gradient-from-position) !important;
+	--tw-gradient-from: var(--sw-gradient-from) var(--tw-gradient-from-position) !important;
 }
 
-.alert.alert-success {
-    color: rgb(255,255,255) !important;
-	background-color: rgba(var(--success)) !important;
-}
-
-.alert.alert-danger {
-    color: rgb(255,255,255) !important;
-	background-color: rgba(var(--secondary-rgb)) !important;
-}
-
-.alert.alert-warning {
-	color: rgb(255,255,255,0.9) !important;
-}
-
-.active.fc-tab-active\:text-gray-900 {
-	color: rgb(255,255,255,0.9) !important;
-	font-weight: 600 !important;
-	background: rgb(var(--secondary-rgb)) !important;
-	border-bottom-color: white !important;
-}
-
-.fal, .fa-light {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.fal, .fa-light:hover {
-	color: rgb(var(--secondary-rgb)) !important;
-}
-
-.to-\[\#160f6b\] {
-	--tw-gradient-to: white var(--tw-gradient-to-position) !important;
-}
-
-.from-\[\#4361ee\] {
-	--tw-gradient-from: rgb(var(--primary-rgb)) var(--tw-gradient-from-position) !important;
-}
-
-.fi-ta-empty-state-heading {
-	color: rgb(var(--primary-rgb) / var(--tw-text-opacity)) !important;
-}
-
-.card-title {
-	color: rgb(var(--primary-rgb) / var(--tw-text-opacity)) !important;
-}
-
-.striped-table table tbody tr td {
-	color: rgb(var(--primary-rgb) / var(--tw-text-opacity)) !important;
-}
-
-.fi-ta-header-heading {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.text-custom-600 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.text-gray-700 {
-	color: rgb(var(--primary-rgb),0.7) !important;
-}
-
-.text-gray-400 {
-	color: rgb(var(--primary-rgb),0,6) !important;
-}
-
-.text-gray-500 {
-	color: rgb(var(--primary-rgb),0.8) !important;
-}
-
-.btn-success:hover {
-	background-color: rgba(var(--secondary-rgb)) !important;
-}
-
-.btn-info:hover {
-	background-color: rgba(var(--secondary-rgb)) !important;
-}
-
-.fi-section-header-heading {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.btn.btn-sm {
-	color: rgb(255,255,255) !important;
-	background-color: rgb(var(--primary-rgb)) !important;
-}
-
-.border-primary {
-	border-color: rgba(var(--primary-rgb)) !important;
-}
-
-.hover\:text-white:hover {
-	background: rgb(var(--secondary-rgb)) !important;
-	color: rgb(255,255,255) !important;
-	border-color: rgba(var(--secondary-rgb)) !important;
-}
-
-.text-\[\#515365\] {
-	color: rgbaa(var(--primary-rgb)) !important;
-}
-
-.ring-custom-600 {
-	color: rgb(255,255,255) !important;
-	background-color: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-	--tw-ring-color: rgb(var(--primary-rgb)) !important;
-}
-
-.hover\:bg-custom-400\/10:hover {
-	background: rgb(var(--secondary-rgb)) !important;
-	color: rgb(255,255,255) !important;
-	border-color: rgba(var(--secondary-rgb)) !important;
-	--tw-ring-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.text-gray-600 {
-	color: rgb(var(--primary-rgb),0,6) !important;
-}
-
-.ring-custom-600\/10 {
-	background-color: rgba(var(--secondary-rgb)) !important;
-	color: rgb(255,255,255) !important;
-}
-
-.badge.badge-success {
-	color: rgb(255,255,255) !important;
-	background-color: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-	--tw-ring-color: rgb(var(--primary-rgb)) !important;
-}
-
-.badge {
-	color: rgb(255,255,255) !important;
-	background-color: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-	--tw-ring-color: rgb(var(--primary-rgb)) !important;
-}
-
-.choices__group {
-	font-weight: 650 !important;
-}
-
-.hover\:bg-custom-500:hover {
-	background: rgb(var(--secondary-rgb)) !important;
-	border-color: rgba(var(--secondary-rgb)) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb)) !important;
-}
-
-.btn-info-outline:hover {
-	background: rgb(var(--secondary-rgb)) !important;
-	border-color: rgba(var(--secondary-rgb)) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb)) !important;
-}
-
-.fi-input-wrp:focus-within {
-	--tw-ring-opacity: 1 !important;
-	--tw-ring-color: rgb(var(--secondary-rgb)) !important
-}
-
-.card.card-primary {
-	background-color: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-	--tw-ring-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.card.card-warning {
-	background-color: rgb(var(--danger-rgb))!important;
-	border-color: rgb(var(--danger-rgb)) !important;
-	--tw-ring-color: rgb(var(--danger-rgb)) !important;
-}
-
-.card.card-danger {
-	background-color: rgb(var(--danger-rgb))!important;
-	border-color: rgb(var(--danger-rgb)) !important;
-	--tw-ring-color: rgb(var(--danger-rgb)) !important;
-}
-
-.fi-pagination-item-label, .fi-select-input, .fi-pagination-overview, .fi-input, .fi-ta-filter-indicators 
-span {
-	color: rgb(var(--primary),0.9) !important;
-}
-
-.card.card-info {
-	color: rgb(255,255,255) !important;
-	background-color: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-	--tw-ring-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.text-green-600 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.text-primary-600 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.text-gray-900 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.text-gray-950 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.text-emerald-600 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-/*Map section */
-.sidebar-header-large.has-aircraft-image {
-	background-image: var(--aircraft-image) !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-}
-
-.sidebar-header {
-	color: rgb(var(--primary-rgb)) !important;
-	background: rgb(var(--primary-rgb), 0.1) !important;
-	background-color: rgb(var(--primary-rgb), 0.1) !important;
-	border-color: rgb(var(--primary-rgb), 0.1) !important;
-}
-
-.card-codes {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.card-name {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.card-action {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.card-placeholder-title {
-	color: rgb(var(--primary-rgb)) !important;
-}
-.card-placeholder-text {
-	color: rgb(var(--primary-rgb)) !important;
-}
-.airport-card-placeholder-icon {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.airport-btn-dispatch {
-	color: white !important;
-	background: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.airport-btn-dispatch:hover {
-	background-color: rgb(var(--secondary-rgb)) !important;
-	color: white !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.action-btn-reset {
-	background-color: rgb(var(--primary-rgb)) !important;
-	color: white !important;
-}
-
-.action-btn-reset:hover {
-	background-color: rgb(var(--secondary-rgb)) !important;
-	color: white !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.airport-btn-info {
-	background-color: rgb(var(--primary-rgb)) !important;
-	color: white !important;
-}
-
-.airport-btn-info:hover {
-	background-color: rgb(var(--secondary-rgb)) !important;
-	color: white !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.weather-control-text {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.range-rings-label {
-	color: rgb(var(--primary-rgb)) !important;
-}
-.range-rings-icon {
-	color: rgb(var(--primary-rgb)) !important;
-}
- 
-.weather-toggle-active {
-	background: rgb(var(--primary-rgb)) !important;
-	color: white !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.route-card-label {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.route-card-value {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.route-card-icon {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-btn {
-	background: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.dispatch-btn:hover {
-	background: rgb(var(--secondary-rgb), 0.7) !important;
-	border-color: rgb(var(--secondary-rgb), 0.7) !important;
-}
-
-.airport-btn-jumpseat {
-	background: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-	color: white !important;
-}
-
-.airport-btn-jumpseat:hover {
-	background: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-	color: white !important;
-}
-
-.filter-button {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.filter-panel-header {
-	color: rgb(var(--primary-rgb)) !important;
-	background: rgb(var(--primary-rgb), 0.1) !important;
-	background-color: rgb(var(--primary-rgb), 0.1) !important;
-	border-color: rgb(var(--primary-rgb), 0.1) !important;
-}
-
-.combobox-item {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.combobox-item:hover {
-	color: white !important;
-	background: rgb(var(--secondary-rgb)) !important;
-}
-
-.mode-toggle-btn {
-	background: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-	color: white !important;
-}
-
-.mode-toggle-btn:hover {
-	background: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-	color: white !important;
-}
-
-.helper-text {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.card-badge-current-location {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.card-badge-arrival {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.flight-card-callsign {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.flight-card-pilot {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.flight-card-badge {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.flight-card-airport {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.weather-control-detail {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.flights-search-input {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.time-label {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.time-value {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.progress-phase {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.progress-aircraft {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.progress-info-item {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.route-card-header-value {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.progress-network {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.aircraft-attribution-label {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.aircraft-attribution-text {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.card-badge-departure {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.flight-progress-bar-fill {
-	background: rgb(var(--primary-rgb)) !important;
-	--marker-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.swap-btn {
-	background: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-	color: white !important;
-}
-
-.swap-btn:hover {
-	background: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-	color: white !important;
-}
-.tiptap.ProseMirror p {
-	color: rgb(var(--primary-rgb)) !important;
-	font-weight: 500 !important;
-}
-.tiptap.ProseMirror ul {
-	color: rgb(var(--primary-rgb)) !important;
-	font-weight: 500 !important;
-}
-
-.text-zinc-500 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.text-zinc-400 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.text-zinc-800 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.text-zinc-600 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.text-zinc-700 {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-badge {
-	color: white !important;
-	background: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-action {
-	color: white !important;
-	background: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-action:hover {
-	color: white !important;
-	background: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.dispatch-route-info a[href] {
-	color: white !important;
-	background: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-route-info-times {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-option-group-heading {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-route-info a[href]:hover {
-	color: white !important;
-	background: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.dispatch-summary {
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-summary-header {
-	color: white !important;
-	background: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-route-info-endpoint {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-action.dispatch-action-manage-favourites {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-random-aircraft {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-fr24 {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-label {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-route-info-toggle {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-section-title {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-section-icon {
-	color: rgb(var(--primary-rgb)) !important;
-	background-color: rgb(var(--secondary-rgb),0.4) !important;
-}
-
-.dispatch-value {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-meta {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-value-quota {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-summary-fuel-row-pending {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-hint {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-section-summary {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-actions-summary {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-action.dispatch-action-aircraft-picker {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-badge.dispatch-badge-callsign-status-free {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.data-\[checked\]\:bg-\[var\(--color-accent\)\][data-checked] {
-	background-color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-action.dispatch-action-copy-route-time {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-time-setter {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-copy-route {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-generate {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-badge.dispatch-badge-callsign-status-taken {
-	color: rgb(var(--danger-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-field-unit {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-badge.dispatch-badge-mzfw-exceeded {
-	color: rgb(var(--danger-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-missing-network {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-preferred-network {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-missing-copilot {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-sync-airframes {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-manage-profiles {
-	color: rgb(var(--primary-rgb)) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.viewBookingFieldTitle {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-action-preview {
-	color: white !important;
-	background: rgb(var(--primary-rgb)) !important;
-	border-color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-action-preview:hover {
-	color: white !important;
-	background: rgb(var(--secondary-rgb)) !important;
-	border-color: rgb(var(--secondary-rgb)) !important;
-}
-
-.dispatch-ofp-field-label {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-ofp-field-value {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.tabular-nums {
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-.dispatch-finder-card-vfr {
-	border-color: rgb(var(--primary-rgb)) !important;
-	color: rgb(var(--primary-rgb)) !important;
-}
-
-/* Dark Mode section */
 :root:is(.dark) {
 	--primary: var(--primary-darkmode-color) !important;
 	--primary-600: var(--secondary-rgb) !important;
 	--success: var(--secondary-rgb) !important;
 	--success-600: var(--secondary-rgb) !important;
 	--warning: var(--secondary-rgb) !important;
-    --tw-topbar-bg: rgba(var(--gray-800)) !important;
+	--info-500: var(--secondary-rgb) !important;
+	--info-600: var(--secondary-rgb) !important;
+	--info-700: var(--primary-rgb) !important;
+	--tw-topbar-bg: rgba(var(--gray-800)) !important;
 	--tw-menu-bg: #313a46 !important;
 	--tw-body-bg: #2d333c !important;
-    --tw-body-color: #aab8c5 !important;
-	--tw-menu-item-color: #aab8c5  !important;
+	--tw-body-color: #aab8c5 !important;
+	--tw-menu-item-color: #aab8c5 !important;
 	--tw-menu-item-active-color: rgb(var(--secondary-rgb)) !important;
 	--tw-menu-item-hover-color: rgb(var(--secondary-rgb)) !important;
 	--tw-topbar-item-color: rgb(131, 145, 162) !important;
 	--tw-topbar-item-active-color: rgb(var(--secondary-rgb)) !important;
 	--tw-topbar-item-hover-color: rgb(var(--secondary-rgb)) !important;
-	--info-500: var(--secondary-rgb) !important;
-	--info-600: var(--secondary-rgb) !important;
-	--info-700: var(--primary-rgb) !important;
 	--dark: 33, 37, 41 !important;
-    --dark-50: 244, 246, 247 !important;
-    --dark-100: 227, 231, 234 !important;
-    --dark-200: 203, 211, 214 !important;
-    --dark-300: 166, 180, 186 !important;
-    --dark-400: 122, 140, 150 !important;
-    --dark-500: 95, 113, 123 !important;
-    --dark-600: 81, 95, 105 !important;
-    --dark-700: 70, 80, 88 !important;
-    --dark-800: 62, 69, 76 !important;
-    --dark-900: 55, 61, 66 !important;
-    --dark-950: 33, 37, 41 !important;
-    --gray-50: 245, 245, 247 !important;
-    --gray-100: 235, 236, 239 !important;
-    --gray-200: 206, 207, 214 !important;
-    --gray-300: 177, 178, 190 !important;
-    --gray-400: 118, 121, 141 !important;
-    --gray-500: 59, 63, 92 !important;
-    --gray-600: 53, 57, 83 !important;
-    --gray-700: 44, 47, 69 !important;
+	--dark-50: 244, 246, 247 !important;
+	--dark-100: 227, 231, 234 !important;
+	--dark-200: 203, 211, 214 !important;
+	--dark-300: 166, 180, 186 !important;
+	--dark-400: 122, 140, 150 !important;
+	--dark-500: 95, 113, 123 !important;
+	--dark-600: 81, 95, 105 !important;
+	--dark-700: 70, 80, 88 !important;
+	--dark-800: 62, 69, 76 !important;
+	--dark-900: 55, 61, 66 !important;
+	--dark-950: 33, 37, 41 !important;
+	--gray-50: 245, 245, 247 !important;
+	--gray-100: 235, 236, 239 !important;
+	--gray-200: 206, 207, 214 !important;
+	--gray-300: 177, 178, 190 !important;
+	--gray-400: 118, 121, 141 !important;
+	--gray-500: 59, 63, 92 !important;
+	--gray-600: 53, 57, 83 !important;
+	--gray-700: 44, 47, 69 !important;
 	--gray-800: 49, 58, 70 !important;
-    --gray-900: 29, 31, 45 !important;
-    --gray-950: 18, 19, 28 !important;
-	--tw-gradient-from: rgb(var(--primary-rgb)) var(--tw-gradient-from-position) !important;
+	--gray-900: 29, 31, 45 !important;
+	--gray-950: 18, 19, 28 !important;
 }
 
-.striped-padded-table table tbody tr td:is(.dark *) {
-	color: rgb(156 163 175 / var(--tw-text-opacity)) !important;
+/* ============================================================
+   4. Components
+   ============================================================ */
+
+/* --- Typography weights --- */
+.menu .menu-item .menu-link > .menu-text { font-weight: 450; }
+.choices__group { font-weight: 650 !important; color: var(--sw-text) !important; }
+.tiptap.ProseMirror :is(p, ul) { font-weight: 500 !important; color: var(--sw-text) !important; }
+
+/* --- Text, weaker steps (darker Tailwind step = stronger text).
+       Kept before the strongest step so an element with both
+       text-gray-500 and text-gray-900 (e.g. the active dashboard tab) gets the stronger one. --- */
+.text-gray-600, .text-zinc-600 { color: var(--sw-text-2) !important; }
+.text-gray-500, .text-zinc-500,
+.dispatch-ofp-field-label { color: var(--sw-text-3) !important; }  /* OFP summary: label softer than its value */
+.text-gray-400, .text-zinc-400 { color: var(--sw-text-4) !important; }
+
+/* --- Text, strongest step --- */
+.striped-padded-table table tbody tr td,
+.striped-table table tbody tr td,
+.fi-ta-empty-state-heading,
+.fi-ta-header-heading,
+.fi-section-header-heading,
+.card-title,
+.text-custom-600,
+.text-primary-600,
+.text-green-600,
+.text-emerald-600,
+.text-\[\#515365\],
+.text-gray-950, .text-gray-900, .text-gray-700,
+.text-zinc-800, .text-zinc-700,
+.fi-pagination-item-label, .fi-select-input, .fi-pagination-overview, .fi-input, .fi-ta-filter-indicators span,
+.fal, .fa-light,
+/* map */
+.card-codes, .card-name, .card-action,
+.card-placeholder-title, .card-placeholder-text, .airport-card-placeholder-icon,
+.weather-control-text, .weather-control-detail,
+.range-rings-label, .range-rings-icon,
+.route-card-label, .route-card-value, .route-card-icon, .route-card-header-value, .route-card-header-title,
+.weather-control-label, .weather-control-icon, .aircraft-attribution-icon, .progress-info-icon,
+.filter-button, .combobox-item, .helper-text, .flights-search-input,
+.card-badge-current-location, .card-badge-arrival, .card-badge-departure,
+.flight-card-callsign, .flight-card-pilot, .flight-card-badge, .flight-card-airport,
+.time-label, .time-value,
+.progress-phase, .progress-aircraft, .progress-info-item, .progress-network,
+.aircraft-attribution-label, .aircraft-attribution-text,
+/* dispatch */
+.dispatch-route-info-times, .dispatch-route-info-endpoint, .dispatch-route-info-toggle,
+.dispatch-option-group-heading, .dispatch-label, .dispatch-section-title,
+.dispatch-value, .dispatch-value-quota, .dispatch-meta, .dispatch-hint,
+.dispatch-section-summary, .dispatch-actions-summary, .dispatch-summary-fuel-row-pending,
+.dispatch-field-unit, .dispatch-ofp-field-value,
+.viewBookingFieldTitle, .tabular-nums,
+/* PIREP map buttons (vAMSYS: black text) */
+.control-btn {
+	color: var(--sw-text) !important;
 }
 
-.dark\:bg-gray-800:is(.dark *) {
-	background-color: rgba(49, 58, 70) !important;
-	color: var(--gray-800) !important;
+/* --- Icons --- */
+.fal:hover, .fa-light:hover { color: var(--sw-accent) !important; }
+
+/* --- Filled buttons, badges, chips --- */
+.btn.btn-sm,
+.badge, .badge.badge-success,
+.ring-custom-600,
+.airport-btn, .airport-btn-dispatch, .airport-btn-info, .airport-btn-jumpseat,
+.action-btn, .action-btn-reset,
+.weather-toggle-active, .mode-toggle-btn, .swap-btn,
+.dispatch-badge, .dispatch-action, .dispatch-action-preview,
+.dispatch-route-info a[href],
+.dispatch-summary-header,
+.bg-success-100.text-success-700,   /* PIREP "Accepted" status pill (vAMSYS: pale green) */
+.control-btn.active {               /* PIREP map: Hide Flight Path / Hide Filed Route (vAMSYS: Tailwind blue) */
+	color: var(--sw-on-fill) !important;
+	background: var(--sw-btn-bg) !important;
+	border-color: var(--sw-btn-bg) !important;
+	--tw-ring-color: var(--sw-btn-bg) !important;
 }
 
-.dark\:hover\:text-gray-400:hover:is(.dark *) {
-	color: rgb(var(--primary),0.7) !important;
-	font-weight: 600 !important;
-	background: rgb(var(--secondary-rgb),.7) !important;
-	border-bottom-color: white !important;
+.data-\[checked\]\:bg-\[var\(--color-accent\)\][data-checked] {
+	background-color: var(--sw-btn-bg) !important;
+	border-color: var(--sw-btn-bg) !important;
 }
 
-.fal, .fa-light:hover:is(.dark *) {
-	color: rgb(var(--secondary-rgb)) !important;
+/* --- Hover state for all of the above and vAMSYS hover utilities --- */
+.airport-btn:hover, .airport-btn-dispatch:hover, .airport-btn-info:hover, .airport-btn-jumpseat:hover,
+.action-btn:hover, .action-btn-reset:hover,
+.mode-toggle-btn:hover, .swap-btn:hover,
+.dispatch-action:hover, .dispatch-action-preview:hover, .dispatch-route-info a[href]:hover,
+.combobox-item:hover,
+.hover\:text-white:hover,
+.hover\:bg-custom-400\/10:hover,
+.hover\:bg-custom-500:hover,
+.btn-info-outline:hover, .btn-success:hover, .btn-info:hover {
+	color: var(--sw-on-fill) !important;
+	background: var(--sw-btn-hover-bg) !important;
+	border-color: var(--sw-btn-hover-bg) !important;
+	--tw-ring-color: var(--sw-btn-hover-bg) !important;
 }
 
-.fal, .fa-light:is(.dark *) {
-	color: var(--gray-800) !important;
+/* --- Destructive actions (booking page: Cancel Booking, Cancel & Rebook) stay red --- */
+.btn.btn-sm.btn-danger-outline {
+	color: var(--sw-on-fill) !important;
+	background: var(--sw-danger-bg) !important;
+	border-color: var(--sw-danger-bg) !important;
+	--tw-ring-color: var(--sw-danger-bg) !important;
+}
+.btn.btn-sm.btn-danger-outline:hover { filter: brightness(0.9); }
+
+/* --- Text-only dispatch actions and status badges (must come after the button rules) --- */
+.dispatch-action.dispatch-action-manage-favourites,
+.dispatch-action.dispatch-action-random-aircraft,
+.dispatch-action.dispatch-action-fr24,
+.dispatch-action.dispatch-action-aircraft-picker,
+.dispatch-action.dispatch-action-copy-route-time,
+.dispatch-action.dispatch-action-time-setter,
+.dispatch-action.dispatch-action-copy-route,
+.dispatch-action.dispatch-action-copy-atc,
+.dispatch-action.dispatch-action-generate,
+.dispatch-action.dispatch-action-missing-network,
+.dispatch-action.dispatch-action-preferred-network,
+.dispatch-action.dispatch-action-missing-copilot,
+.dispatch-action.dispatch-action-sync-airframes,
+.dispatch-action.dispatch-action-manage-profiles,
+.dispatch-badge.dispatch-badge-callsign-status-free {
+	color: var(--sw-text) !important;
+	background: unset !important;
+	border-color: unset !important;
 }
 
-.alert.alert-success:is(.dark *) {
-    color: rgba(var(--primary), 0.9) !important;
-	background-color: rgba(var(--success),0.9) !important;
+.dispatch-badge.dispatch-badge-callsign-status-taken,
+.dispatch-badge.dispatch-badge-mzfw-exceeded {
+	color: var(--sw-danger) !important;
+	background: unset !important;
+	border-color: unset !important;
 }
 
-.alert.alert-warning:is(.dark *) {
-	color: rgba(var(--primary),0.8) !important;
+/* --- Accent surfaces --- */
+.dispatch-btn,
+.card.card-primary, .card.card-info,
+.ring-custom-600\/10,
+.active.fc-tab-active\:text-gray-900 {
+	color: var(--sw-on-fill) !important;
+	background: var(--sw-accent) !important;
+	border-color: var(--sw-accent) !important;
+	--tw-ring-color: var(--sw-accent) !important;
+}
+.active.fc-tab-active\:text-gray-900 { font-weight: 600 !important; border-bottom-color: white !important; }
+.dispatch-btn:hover {
+	background: var(--sw-accent-hover) !important;
+	border-color: var(--sw-accent-hover) !important;
 }
 
-.dark\:text-white:is(.dark *)
-{
-    color: rgba(var(--primary),0.7) !important;
+.card.card-warning, .card.card-danger {
+	background-color: var(--sw-danger-bg) !important;
+	border-color: var(--sw-danger-bg) !important;
+	--tw-ring-color: var(--sw-danger-bg) !important;
 }
 
-.fi-ta-empty-state-heading:is(.dark *) {
-	color: rgb(var(--primary) / var(--tw-text-opacity))!important;
+/* --- Alerts --- */
+.alert.alert-success {
+	color: var(--sw-alert-fg) !important;
+	background-color: var(--sw-alert-bg) !important;
+	border: 1px solid var(--sw-alert-border) !important;
+}
+.alert.alert-danger {
+	color: rgb(255,255,255) !important;
+	background-color: var(--sw-danger) !important;
+}
+.alert.alert-warning { color: var(--sw-on-fill) !important; }
+
+/* --- Borders, rings, focus --- */
+.border-primary { border-color: var(--sw-btn-bg) !important; }
+.fi-input-wrp:focus-within {
+	--tw-ring-opacity: 1 !important;
+	--tw-ring-color: var(--sw-focus-ring) !important;
 }
 
-.card-title:is(.dark *) {
-	color: rgb(var(--primary) / var(--tw-text-opacity))!important;
-}
+/* --- Gradients --- */
+.from-\[\#4361ee\] { --tw-gradient-from: var(--sw-gradient-from) var(--tw-gradient-from-position) !important; }
+.to-\[\#160f6b\]   { --tw-gradient-to: white var(--tw-gradient-to-position) !important; }
 
-.striped-table table tbody tr td:is(.dark *) {
-	color: rgb(var(--primary) / var(--tw-text-opacity))!important;
-}
-
-.fi-ta-header-heading:is(.dark *) {
-	color: rgb(var(--primary)) !important;
-}
-
-.text-custom-600:is(.dark *) {
-	color: rgb(var(--primary),0.8) !important;
-}
-
-.to-\[\#160f6b\]:is(.dark *) {
-	--tw-gradient-to: white var(--tw-gradient-to-position) !important;
-}
-
-.from-\[\#4361ee\]:is(.dark *) {
-	--tw-gradient-from: rgb(var(--secondary-rgb),0.8) var(--tw-gradient-from-position) !important;
-}
-
-.text-gray-700:is(.dark *) {
-	color: rgb(var(--primary),0.7) !important;
-}
-
-.text-primary:is(.dark *) {
-	color: var(--tw-body-color) !important;
-}
-
-.active.dark\:fc-tab-active\:text-white:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary),0.9) !important;
-}
-
-.dark\:text-gray-400:is(.dark *) {
-	color: rgb(var(--primary),0.8) !important;
-}
-
-.dark\:ring-custom-500:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.9) !important;
-	color: rgba(var(--primary),0.9) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.9) !important;
-}
-
-.btn.btn-sm:is(.dark *) {
-	color: rgba(var(--primary), 0.9) !important;
-	background: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgba(var(--secondary-rgb), 0.9) !important;
-}
-
-.border-primary:is(.dark *) {
-	border-color: rgba(var(--secondary-rgb), 0.8) !important;
-}
-
-.hover\:text-white:hover:is(.dark *) {
-	background: rgb(var(--secondary-rgb), 0.8) !important;
-	color: rgba(var(--primary), 0.9) !important;
-	border-color: rgba(var(--secondary-rgb), 0.8) !important;
-}
-
-.bg-warning:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.8) !important;
-	color: rgba(var(--primary),0.8) !important;
-}
-
-.choices__list--single .choices__item:is(.dark *) {
-	color: rgba(var(--primary),0.8) !important;
-}
-
-.btn-info:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.9) !important;
-	color: rgba(var(--primary),0.8) !important;
-}
-
-.btn-info:hover:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.7) !important;
-	color: rgba(var(--primary),0.9) !important;
-}
-
-.dark\:bg-\[\#060818\]:is(.dark *) {
-	background-color: var(--tw-body-bg) !important;
-	color: rgba(var(--primary),0.9) !important;
-}
-
-.text-gray-500:is(.dark *) {
-	color: rgb(var(--primary),0.8) !important;
-}
-
-.dark\:text-custom-400:is(.dark *) {
-	color: rgb(var(--primary),0.9) !important;
-}
-
-.dark\:ring-custom-400\/30:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.9) !important;
-	color: rgba(var(--primary),0.9) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.9) !important;
-}
-
-.choices__placeholder.choices__item:is(.dark *) {
-	color: rgba(var(--primary),0.8) !important;
-}
-
-.badge.badge-success:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.8) !important;
-	color: rgba(var(--primary),0.8) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.8) !important;
-	border-color: rgba(var(--secondary-rgb), 0.8) !important;
-}
-
-.badge:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.8) !important;
-	color: rgba(var(--primary),0.8) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.8) !important;
-	border-color: rgba(var(--secondary-rgb), 0.8) !important;
-}
-.choices__group:is(.dark *) {
-	font-weight: 650 !important;
-	color: rgba(var(--primary), 0.9) !important;
-}
-
-.focus\:ring-0:focus:is(.dark *) {
-	--tw-ring-color: rgba(var(--secondary-rgb)) !important;
-}
-
-.hover\:bg-custom-500:hover:is(.dark *) {
-	background: rgb(var(--secondary-rgb), 0.7) !important;
-	border-color: rgba(var(--secondary-rgb), 0.7) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.7) !important;
-	color: rgba(var(--primary),0.9) !important;
-}
-
-.btn-info-outline:is(.dark *):hover {
-	background: rgb(var(--secondary-rgb), 0.8) !important;
-	color: rgba(var(--primary),0.8) !important;
-	border-color: rgba(var(--secondary-rgb), 0.8) !important;
-}
-
-.btn-danger-outline:is(.dark *):hover {
-	background: rgb(var(--danger-500), 0.8) !important;
-	color: rgba(var(--primary),0.7) !important;
-	border-color: rgba(var(--danger-500), 0.8) !important;
-}
-
-.dark\:bg-custom-500:is(.dark *) {
-	background: rgb(var(--secondary-rgb), 0.8) !important;
-	border-color: rgba(var(--secondary-rgb), 0.8) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.8) !important;
-	color: rgba(var(--primary),0.9) !important;
-}
-
-.dark\:hover\:bg-custom-400:hover:is(.dark *) {
-	background: rgb(var(--secondary-rgb), 0.7) !important;
-	color: rgba(var(--primary),0.7) !important;
-	border-color: rgba(var(--secondary-rgb), 0.7) !important;
-}
-
-.dark\:hover\:bg-white\/10:hover:is(.dark *) {
-	background: rgb(var(--secondary-rgb), 0.7) !important;
-	color: rgba(var(--primary),0.7) !important;
-	border-color: rgba(var(--secondary-rgb), 0.7) !important;
-}
-
-.btn-primary:hover:is(.dark *) {
-	background: rgb(var(--secondary-rgb), 0.7) !important;
-	color: rgba(var(--primary),0.7) !important;
-	border-color: rgba(var(--secondary-rgb), 0.7) !important;
-}
-
-.btn-success:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.9) !important;
-	color: rgba(var(--primary),0.9) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.9) !important;
-	border-color: rgba(var(--secondary-rgb), 0.9) !important;
-}
-
-.btn-success:hover:is(.dark *) {
-	background: rgb(var(--secondary-rgb), 0.7) !important;
-	color: rgba(var(--primary),0.7) !important;
-	border-color: rgba(var(--secondary-rgb), 0.7) !important;
-}
-
-.btn-primary:is(.dark *) {
-	background: rgba(var(--secondary-rgb), 0.8) !important;
-	color: rgba(var(--primary),0.8) !important;
-	--tw-ring-color: rgba(var(--secondary-rgb), 0.8) !important;
-	border-color: rgba(var(--secondary-rgb), 0.8) !important;
-}
-
-.fi-input-wrp:focus-within:is(.dark *) {
-  --tw-ring-opacity: 1 !important;
-  --tw-ring-color: rgb(var(--secondary-rgb),0.8) !important
-}
-.choices__input:is(.dark *)::-moz-placeholder {
-    color: var(--tw-body-color);
-}
-.choices__input:is(.dark *)::placeholder {
-    color: var(--tw-body-color);
-}
-
-.card.card-primary:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb), 0.8) !important;
-	--tw-ring-color: rgb(var(--secondary-rgb), 0.8) !important;
-}
-
-.card.card-warning:is(.dark *) {
-	background-color: rgb(var(--danger-rgb), 0.8)!important;
-	border-color: rgb(var(--danger-rgb), 0.8) !important;
-	--tw-ring-color: rgb(var(--danger-rgb), 0.8) !important;
-}
-
-.card.card-danger:is(.dark *) {
-	background-color: rgb(var(--danger-rgb), 0.8)!important;
-	border-color: rgb(var(--danger-rgb), 0.8) !important;
-	--tw-ring-color: rgb(var(--danger-rgb)), 0.8 !important;
-}
-
-.dark\:bg-dark\/40:is(.dark *) {
-	background-color: rgb(var(--primary-darkmode-color),0.8) !important
-}
-
-.dark\:text-custom-300\/50:is(.dark *) {
-	color: rgba(var(--primary),0.9) !important;
-}
-
-.card.card-info:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-	--tw-ring-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.dark\:text-primary-400:is(.dark *) {
-	color: rgba(var(--primary),0.9) !important;
-}
-
-.dark\:text-green-400:is(.dark *) {
-	color: rgba(var(--primary),0.9) !important;
-}
-
-.dark\:text-gray-300:is(.dark *) {
-	color: rgba(var(--primary),0.9) !important;
-}
-
-.dark\:text-emerald-400:is(.dark *) {
-	color: rgba(var(--primary),0.9) !important;
-}
-
-.dark\:checked\:bg-primary-500:checked:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-/* Map Section Dark Mode */
-.sidebar-header-large.has-aircraft-image:is(.dark *) {
+/* --- Map --- */
+.sidebar-header-large.has-aircraft-image {
 	background-image: var(--aircraft-image) !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
+	background-size: cover !important;
+	background-position: center !important;
+	background-repeat: no-repeat !important;
 }
-
-.sidebar-header:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: rgb(var(--secondary-rgb), 0.1) !important;
-	background-color: rgb(var(--secondary-rgb), 0.1) !important;
-	border-color: rgb(var(--secondary-rgb), 0.1) !important;
+.sidebar-header, .filter-panel-header {
+	color: var(--sw-text) !important;
+	background: var(--sw-tint) !important;
+	border-color: var(--sw-tint) !important;
 }
-
-.card-codes:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
+/* Flight sidebar cards: more opaque so the map colours don't tint them */
+.route-card, .weather-card, .aircraft-attribution-card, .airport-card, .range-rings-card {
+	background-color: var(--sw-glass) !important;
 }
-
-.card-name:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8)!important;
-}
-
-.card-action:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.card-placeholder-title:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8)!important;
-}
-.card-placeholder-text:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-.airport-card-placeholder-icon:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.airport-btn-dispatch:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.airport-btn-dispatch:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.action-btn-reset:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9)!important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.action-btn-reset:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.7)!important;
-}
-
-.airport-btn-info:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.airport-btn-info:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.7)!important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.weather-control-text:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.range-rings-label:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-.range-rings-icon:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
- 
-.weather-toggle-active:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.route-card-label:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.route-card-value:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.route-card-icon:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-btn:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.dispatch-btn:hover:is(.dark *) {
-	background: rgb(var(--secondary-rgb), 0.7) !important;
-	border-color: rgb(var(--secondary-rgb), 0.7) !important;
-}
-
-.airport-btn-jumpseat:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.9) !important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.airport-btn-jumpseat:hover:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.7) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.filter-button:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.filter-panel-header:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: rgb(var(--secondary-rgb), 0.1) !important;
-	background-color: rgb(var(--secondary-rgb), 0.1) !important;
-	border-color: rgb(var(--secondary-rgb), 0.1) !important;
-}
-
-.combobox-item:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.combobox-item:hover:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: rgb(var(--secondary-rgb),0.9)!important;
-}
-
-.mode-toggle-btn:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.9)!important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.mode-toggle-btn:hover:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.7) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.helper-text:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.card-badge-current-location:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.card-badge-arrival:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.flight-card-callsign:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.flight-card-pilot:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.flight-card-badge:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.flight-card-airport:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.weather-control-detail:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.flights-search-input:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0,7) !important;
-}
-
-.time-label:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.time-value:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.progress-phase:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.progress-aircraft:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.progress-info-item:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.route-card-header-value:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.progress-network:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.aircraft-attribution-label:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.aircraft-attribution-text:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.card-badge-departure:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.flight-progress-bar-fill:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.9)!important;
+/* vAMSYS gives the clickable airport card an indigo border in dark mode */
+.airport-card-clickable:is(.dark *) { border-color: rgba(255,255,255,0.1) !important; }
+.flight-progress-bar-fill {
+	background: var(--sw-meter) !important;
 	--marker-color: rgb(var(--secondary-rgb)) !important;
 }
 
-.swap-btn:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.9)!important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
+/* --- Dispatch --- */
+.dispatch-summary {
+	color: var(--sw-text) !important;
+	border-color: var(--sw-btn-bg) !important;
+}
+.dispatch-section-icon {
+	color: var(--sw-text) !important;
+	background-color: var(--sw-icon-bg) !important;
+}
+.dispatch-meter-fill { background: var(--sw-meter) !important; }
+.dispatch-finder-card-vfr {
+	color: var(--sw-text) !important;
+	border-color: var(--sw-btn-bg) !important;
 }
 
-.swap-btn:hover:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.7)!important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
+/* ============================================================
+   5. Dark-only overrides
+   ============================================================ */
+
+/* Dispatch page: same grey cards as the rest of Phoenix (vAMSYS default is navy) */
+.dispatch-card:is(.dark *), .dispatch-section-card:is(.dark *) {
+	background-color: var(--sw-surface) !important;
 }
-.tiptap.ProseMirror p:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	font-weight: 500 !important;
-}
-.tiptap.ProseMirror ul:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	font-weight: 500 !important;
+/* OFP summary groups: vAMSYS uses grey-800 at 30%, which disappears on the grey cards */
+.dispatch-ofp-group:is(.dark *),
+.dispatch-page :is(input:not([type=checkbox]):not([type=radio]), textarea, ui-select > button):is(.dark *) {
+	background-color: var(--sw-field-bg) !important;
+	border-color: var(--sw-field-border) !important;
 }
 
-.dark\:text-success-400:is(.dark *) {
-	color: rgb(var(--secondary-rgb),0.9) !important;
+/* Tailwind dark: text utilities */
+.dark\:text-white:is(.dark *),
+.dark\:text-gray-300:is(.dark *),
+.dark\:text-gray-400:is(.dark *),
+.dark\:text-custom-400:is(.dark *),
+.dark\:text-custom-300\/50:is(.dark *),
+.dark\:text-primary-400:is(.dark *),
+.dark\:text-green-400:is(.dark *),
+.dark\:text-emerald-400:is(.dark *),
+.choices__list--single .choices__item:is(.dark *),
+.choices__placeholder.choices__item:is(.dark *) {
+	color: var(--sw-text) !important;
 }
-
-.dark\:text-success-300:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.7)!important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-.bg-transparent:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.7)!important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-.dark\:hover\:bg-gray-700:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.7)!important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.text-white:is(.dark *) {
-	background: rgb(var(--secondary-rgb),0.9)!important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dark\:bg-white\/10:is(.dark *) {
-	background: unset !important;
-}
-
-.text-zinc-500:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.text-zinc-400:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.text-zinc-800:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.text-zinc-600:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.text-zinc-700:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-badge:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: rgb(var(--secondary-rgb),0.9)!important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.dispatch-action:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: rgb(var(--secondary-rgb),0.9)!important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.dispatch-action:hover:is(.dark *) {
-	background-color: rgb(var(--secondary-rgb),0.7)!important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.dispatch-route-info a[href]:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: rgb(var(--secondary-rgb),0.9)!important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.dispatch-route-info-times:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-option-group-heading:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-route-info a[href]:hover:is(.dark *) {
-    background-color: rgb(var(--secondary-rgb),0.7)!important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.dispatch-summary:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-summary-header:is(.dark *) {
-    background-color: rgb(var(--secondary-rgb),0.7)!important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.dispatch-card.dispatch-summary:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.dispatch-route-info-endpoint:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-action.dispatch-action-manage-favourites:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-random-aircraft:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-fr24:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-label:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-route-info-toggle:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-section-title:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-section-icon:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-value:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-meta:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-value-quota:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-summary-fuel-row-pending:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-hint:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-section-summary:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-actions-summary:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-action.dispatch-action-aircraft-picker:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-badge.dispatch-badge-callsign-status-free:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.data-\[checked\]\:bg-\[var\(--color-accent\)\][data-checked]:is(.dark *) {
-    background-color: rgb(var(--secondary-rgb),0.7)!important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.dispatch-action.dispatch-action-copy-route-time:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-time-setter:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-copy-route:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-generate:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-badge.dispatch-badge-callsign-status-taken:is(.dark *) {
-    color: rgb(var(--danger-rgb), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-field-unit:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-badge.dispatch-badge-mzfw-exceeded:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-missing-network:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-preferred-network:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-missing-copilot:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-sync-airframes:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action.dispatch-action-manage-profiles:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.viewBookingFieldTitle:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-action-copy-atc:is(.dark *) {
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: unset !important;
-	border-color: unset !important;
-}
-
-.dispatch-action-preview:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	background: rgb(var(--secondary-rgb),0.9)!important;
-	border-color: rgb(var(--secondary-rgb),0.9) !important;
-}
-
-.dispatch-action-preview:hover:is(.dark *) {
-    background-color: rgb(var(--secondary-rgb),0.7)!important;
-	color: rgb(var(--primary-darkmode-color), 0.8) !important;
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-}
-
-.dispatch-ofp-field-label:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-ofp-field-value:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.tabular-nums:is(.dark *) {
-    color: rgb(var(--primary-darkmode-color), 0.8) !important;
-}
-
-.dispatch-finder-card-vfr:is(.dark *) {
-	border-color: rgb(var(--secondary-rgb),0.7) !important;
-	color: rgb(var(--primary-darkmode-color)) !important;
-}
-
+/* Light icons (e.g. the top-bar bulb) follow their parent in dark mode, like the other top-bar items */
+.fal:not(:hover):is(.dark *), .fa-light:not(:hover):is(.dark *) { color: inherit !important; }
+.text-primary:not(.btn):is(.dark *) { color: var(--tw-body-color) !important; }
+/* Accepted count on the dashboard: white, so it differs from pending (orange).
+   Only the text - cards with bg-success keep the orange background. */
+.text-success:is(.dark *) { color: var(--sw-text) !important; }
+.dark\:text-success-400:is(.dark *) { color: var(--sw-accent) !important; }
 .text-info:is(.dark *) {
+	color: var(--sw-text) !important;
 	border-color: rgb(var(--secondary-rgb)) !important;
-	color: rgb(var(--primary-darkmode-color,0.8)) !important;
 }
+.choices__input:is(.dark *)::placeholder { color: var(--tw-body-color); }
+
+/* Tailwind dark: filled utilities and buttons */
+.btn-primary:is(.dark *), .btn-success:is(.dark *), .btn-info:is(.dark *),
+.bg-warning:is(.dark *),
+.dark\:bg-custom-500:is(.dark *),
+.dark\:ring-custom-500:is(.dark *),
+.dark\:ring-custom-400\/30:is(.dark *),
+.dark\:text-success-300:is(.dark *),
+.text-white:is(.dark *),
+.bg-transparent:not(ui-select):is(.dark *),
+.active.dark\:fc-tab-active\:text-white:is(.dark *) {
+	color: var(--sw-on-fill) !important;
+	background: var(--sw-btn-bg) !important;
+	border-color: var(--sw-btn-bg) !important;
+	--tw-ring-color: var(--sw-btn-bg) !important;
+}
+.dark\:checked\:bg-primary-500:checked:is(.dark *) {
+	background-color: var(--sw-btn-bg) !important;
+	border-color: var(--sw-btn-bg) !important;
+}
+
+.btn-primary:hover:is(.dark *),
+.dark\:hover\:bg-custom-400:hover:is(.dark *),
+.dark\:hover\:bg-white\/10:hover:is(.dark *),
+.dark\:hover\:bg-gray-700:hover:is(.dark *) {
+	color: var(--sw-on-fill) !important;
+	background: var(--sw-btn-hover-bg) !important;
+	border-color: var(--sw-btn-hover-bg) !important;
+}
+.dark\:hover\:text-gray-400:hover:is(.dark *) {
+	color: var(--sw-on-fill) !important;
+	background: var(--sw-btn-hover-bg) !important;
+	font-weight: 600 !important;
+	border-bottom-color: white !important;
+}
+.btn-danger-outline:hover:is(.dark *) {
+	color: var(--sw-on-fill) !important;
+	background: var(--sw-danger-bg) !important;
+	border-color: var(--sw-danger-bg) !important;
+}
+.focus\:ring-0:focus:is(.dark *) { --tw-ring-color: var(--sw-focus-ring) !important; }
+
+/* Tailwind dark: surfaces */
+.dark\:bg-gray-800:is(.dark *) {
+	background-color: rgb(49, 58, 70) !important;
+	color: var(--sw-text) !important;
+}
+.dark\:bg-\[\#060818\]:is(.dark *) {
+	background-color: var(--tw-body-bg) !important;
+	color: var(--sw-text) !important;
+}
+.dark\:bg-dark\/40:is(.dark *) { background-color: rgba(var(--primary-darkmode-color), 0.8) !important; }
+.dark\:bg-white\/10:is(.dark *) { background: unset !important; }
