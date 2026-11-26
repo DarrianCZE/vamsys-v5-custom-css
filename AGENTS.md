@@ -31,7 +31,8 @@ the file is pasted into vAMSYS as-is.
    `--sw-btn-hover-bg`, `--sw-accent`, `--sw-accent-hover`, `--sw-on-fill`, `--sw-danger`,
    `--sw-danger-bg`, `--sw-tint`, `--sw-glass`, `--sw-icon-bg`, `--sw-meter`, `--sw-focus-ring`,
    `--sw-gradient-from`, `--sw-alert-*`, and dark-only `--sw-surface`, `--sw-field-bg`,
-   `--sw-field-border`.
+   `--sw-field-border`, `--sw-quiet-*` (outlined secondary map buttons, so Dispatch Flight stays
+   the only solid button in dark mode).
 3. **vAMSYS variable remap** - overrides vAMSYS/Filament/Tailwind variables (`--primary`,
    `--success`, `--gray-*`, `--tw-*`). Values are RGB triplets because vAMSYS consumes them as
    `rgb(var(--x))`.
