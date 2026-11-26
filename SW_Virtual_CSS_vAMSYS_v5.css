@@ -1,6 +1,6 @@
 /*
 SW Virtual CSS Config for vAMSYS v5
-Version: 2.0.5
+Version: 2.0.6
 Author: Jan Podlipsky - jan.podlipsky@sw-virtual.eu
 
 Structure:
@@ -27,11 +27,12 @@ Structure:
 :root {
 	--sw-fg: var(--primary-rgb);
 
-	/* Text: 4 steps, strongest to weakest */
+	/* Text: 4 steps, strongest to weakest. Even the weakest step stays >= 4.5:1 (WCAG AA)
+	   on white and on the light-grey panels; do not go below 0.76 in light mode. */
 	--sw-text:   rgb(var(--sw-fg));
-	--sw-text-2: rgba(var(--sw-fg), 0.85);
-	--sw-text-3: rgba(var(--sw-fg), 0.75);
-	--sw-text-4: rgba(var(--sw-fg), 0.6);
+	--sw-text-2: rgba(var(--sw-fg), 0.9);
+	--sw-text-3: rgba(var(--sw-fg), 0.83);
+	--sw-text-4: rgba(var(--sw-fg), 0.76);
 
 	/* Filled buttons, badges, chips */
 	--sw-btn-bg:       rgb(var(--primary-rgb));
@@ -66,6 +67,7 @@ Structure:
 	--sw-icon-bg:       rgba(var(--secondary-rgb), 0.4); /* circle behind dispatch section icons */
 	--sw-meter:         rgb(var(--primary-rgb));         /* progress bars */
 	--sw-focus-ring:    rgb(var(--secondary-rgb));
+	--sw-focus-outline: rgb(var(--primary-rgb));         /* keyboard focus; orange on white is only 2.4:1 */
 	--sw-gradient-from: rgb(var(--primary-rgb));
 
 	/* Alerts (e.g. the welcome box on the dashboard) */
@@ -80,7 +82,7 @@ Structure:
 	--sw-text:   rgba(var(--sw-fg), 0.85);
 	--sw-text-2: rgba(var(--sw-fg), 0.75);
 	--sw-text-3: rgba(var(--sw-fg), 0.65);
-	--sw-text-4: rgba(var(--sw-fg), 0.5);
+	--sw-text-4: rgba(var(--sw-fg), 0.6);   /* >= 4.5:1 on cards and raised dropdown panels */
 
 	--sw-btn-bg:       rgba(var(--secondary-rgb), 0.9);
 	--sw-btn-hover-bg: rgba(var(--secondary-rgb), 0.7);
@@ -105,6 +107,7 @@ Structure:
 	--sw-icon-bg:       rgba(var(--secondary-rgb), 0.2);
 	--sw-meter:         rgb(var(--secondary-rgb));
 	--sw-focus-ring:    rgba(var(--secondary-rgb), 0.8);
+	--sw-focus-outline: rgb(var(--secondary-rgb));
 	--sw-gradient-from: rgba(var(--secondary-rgb), 0.8);
 
 	--sw-alert-bg:     rgba(var(--secondary-rgb), 0.15);
@@ -167,7 +170,7 @@ Structure:
 	--tw-menu-item-color: #aab8c5 !important;
 	--tw-menu-item-active-color: rgb(var(--secondary-rgb)) !important;
 	--tw-menu-item-hover-color: rgb(var(--secondary-rgb)) !important;
-	--tw-topbar-item-color: rgb(131, 145, 162) !important;
+	--tw-topbar-item-color: #aab8c5 !important;   /* was rgb(131,145,162): only ~3.6:1 on the top bar */
 	--tw-topbar-item-active-color: rgb(var(--secondary-rgb)) !important;
 	--tw-topbar-item-hover-color: rgb(var(--secondary-rgb)) !important;
 	--dark: 33, 37, 41 !important;
@@ -431,6 +434,12 @@ Structure:
 
 /* --- Borders, rings, focus --- */
 .border-primary { border-color: var(--sw-btn-bg) !important; }
+/* Keyboard focus: visible, themed outline on every focusable element (vAMSYS: none on most links,
+   default Tailwind blue on a few). :focus-visible only applies to keyboard focus, not mouse clicks. */
+:focus-visible {
+	outline: 2px solid var(--sw-focus-outline) !important;
+	outline-offset: 2px !important;
+}
 .fi-input-wrp:focus-within {
 	--tw-ring-opacity: 1 !important;
 	--tw-ring-color: var(--sw-focus-ring) !important;

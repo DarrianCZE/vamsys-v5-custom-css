@@ -36,7 +36,11 @@ From version 2.0, every colour decision lives in one place: the **design tokens*
 | `--sw-alert-info-*` / `--sw-alert-warn-*` | Tinted info and warning panels (also the booked-flight card) |
 | `--sw-link` | Links inside page content |
 
-## What's new in 2.0.1 – 2.0.5
+## What's new in 2.0.1 – 2.0.6
+- **2.0.6 (accessibility):**
+  - all text, including the faintest grey labels, now meets WCAG AA contrast (4.5:1) in both modes;
+  - keyboard focus shows a 2px outline (primary colour in light mode, secondary in dark mode);
+  - dark-mode top bar (clock, name, pilot ID) is brighter and readable.
 - **2.0.5:** the booked-flight card on the dashboard is a tinted panel with an orange edge instead of a solid orange block.
 - **2.0.4:**
   - aircraft picker card, dropdown and highlighted row match the theme;

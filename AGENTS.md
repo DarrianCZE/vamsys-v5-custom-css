@@ -32,7 +32,7 @@ the file is pasted into vAMSYS as-is.
    `--sw-danger-bg`, `--sw-tint`, `--sw-glass`, `--sw-icon-bg`, `--sw-meter`, `--sw-focus-ring`,
    `--sw-gradient-from`, `--sw-alert-*` (success alert), `--sw-alert-info-*` / `--sw-alert-warn-*`
    (tinted info/warning panels, also the dashboard booked-flight card), `--sw-link`,
-   `--sw-option-active` (highlighted dropdown row), `--sw-quiet-*` (outlined secondary buttons:
+   `--sw-option-active` (highlighted dropdown row), `--sw-focus-outline` (keyboard focus), `--sw-quiet-*` (outlined secondary buttons:
    map buttons in dark mode, SimBrief Actions), and dark-only `--sw-surface`,
    `--sw-surface-raised` (dropdown panels), `--sw-field-bg`, `--sw-field-border`.
 3. **vAMSYS variable remap** - overrides vAMSYS/Filament/Tailwind variables (`--primary`,
@@ -82,6 +82,12 @@ the file is pasted into vAMSYS as-is.
 - **Map pages re-initialise on theme change.** Toggling `.dark` on `/phoenix/flight-center/book`
   or the flight map reloads the map and clears the selected airport or route.
 - **Charts** on PIREP pages are drawn on canvas; CSS cannot recolour their lines.
+- **Contrast floors (WCAG AA, 4.5:1 for small text).** Text tokens are alpha steps of one colour,
+  so the weakest step sets the floor: `--sw-text-4` must stay >= 0.76 in light mode and >= 0.6 in
+  dark mode (it is also used on the raised dropdown panel). The keyboard focus outline
+  (`--sw-focus-outline`) is the primary colour in light mode because the secondary orange on white
+  is only 2.4:1, below the 3:1 a focus indicator needs. White text on orange fills is an accepted
+  exception (branding decision, see Known gaps).
 
 ## How to test a change
 
@@ -109,9 +115,8 @@ There is no automated suite. Check in a browser, signed in to Phoenix:
 - `card-info` appears on the dashboard booked-flight card (verified). `card-primary`,
   `card-warning` and `card-danger` have not been seen on any Phoenix page; their rules are unverified.
   `alert-info` / `alert-warning` appear on the Pegasus ACARS page (verified).
-- Open accessibility items: `--sw-text-4` is below 4.5:1 for small text (about 3.4:1 light,
-  4.2:1 dark); keyboard focus has no themed `:focus-visible` outline; dark top-bar items
-  (`--tw-topbar-item-color`, `rgb(131,145,162)`) are about 3.6:1.
+- vAMSYS keeps the collapsed sidebar menu focusable, so the first ~20 Tab presses go to
+  off-screen menu links. That is vAMSYS behaviour, not something the stylesheet can fix.
 - `.fal` / `.fa-light` hover rules target Font Awesome Light, which vAMSYS currently uses only for
   the top-bar bulb.
 - Contrast: white text on the secondary orange is about 2.4:1. Setting `--sw-on-fill` to
